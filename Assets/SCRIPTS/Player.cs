@@ -8,14 +8,10 @@ public class Player : MonoBehaviour
 	
 	public Bolsa[] Bolasas;
 	int CantBolsAct = 0;
-	public string TagBolsas = "";
-	
+
 	public enum Estados{EnDescarga, EnConduccion, EnCalibracion, EnTutorial}
 	public Estados EstAct = Estados.EnConduccion;
-	
-	public bool EnConduccion = true;
-	public bool EnDescarga = false;
-	
+
 	public ControladorDeDescarga ContrDesc;
 	public ContrCalibracion ContrCalib;
 	public ContrTutorial ContrTuto;
@@ -25,18 +21,12 @@ public class Player : MonoBehaviour
 	//------------------------------------------------------------------//
 
 	// Use this for initialization
-	void Start () 
+	private void Start () 
 	{
 		for(int i = 0; i< Bolasas.Length;i++)
 			Bolasas[i] = null;
 		
 		MiVisualizacion = GetComponent<Visualizacion>();
-	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-	
 	}
 	
 	//------------------------------------------------------------------//
@@ -51,10 +41,8 @@ public class Player : MonoBehaviour
 			b.Desaparecer();
 			return true;
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 	
 	public void VaciarInv()
@@ -74,6 +62,7 @@ public class Player : MonoBehaviour
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	
@@ -81,12 +70,7 @@ public class Player : MonoBehaviour
 	{
 		ContrDesc = contr;
 	}
-	
-	public ControladorDeDescarga GetContr()
-	{
-		return ContrDesc;
-	}
-	
+
 	public void CambiarACalibracion()
 	{
 		MiVisualizacion.CambiarACalibracion();
@@ -109,14 +93,14 @@ public class Player : MonoBehaviour
 	public void CambiarADescarga()
 	{
 		MiVisualizacion.CambiarADescarga();
-		EstAct = Player.Estados.EnDescarga;
+		EstAct = Estados.EnDescarga;
 	}
 	
 	public void SacarBolasa()
 	{
 		for(int i = 0; i < Bolasas.Length; i++)
 		{
-			if(Bolasas[i] != null)
+			if(Bolasas[i])
 			{
 				Bolasas[i] = null;
 				return;

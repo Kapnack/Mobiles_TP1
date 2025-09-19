@@ -1,36 +1,30 @@
 using UnityEngine;
 using System.Collections;
 
-public class VeredaRespawn : MonoBehaviour 
+public class VeredaRespawn : MonoBehaviour
 {
-	public string PlayerTag = "Player";
+    public string PlayerTag = "Player";
+    
+    private void Awake()
+    {
+        GetComponent<Renderer>().enabled = false;
+    }
 
-	// Use this for initialization
-	void Start () 
-	{
-		GetComponent<Renderer>().enabled = false;
-	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-	
-	}
-	
-	void OnTriggerEnter(Collider other)
-	{
-		if(other.tag == PlayerTag)
-		{
-			other.GetComponent<Respawn>().Respawnear();
-		}	
-	}
-	
-	void OnCollisionEnter(Collision collision) 
-	{
-		if(collision.gameObject.tag == PlayerTag)
-		{
-			collision.gameObject.GetComponent<Respawn>().Respawnear();
-		}
-	}
-	
+    public void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag(PlayerTag)) 
+            return;
+        
+        if (other.TryGetComponent<Respawn>(out var respawn))
+            respawn.Respawnear();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!collision.transform.CompareTag(PlayerTag)) 
+            return;
+        
+        if (collision.transform.TryGetComponent<Respawn>(out var respawn))
+            respawn.Respawnear();
+    }
 }

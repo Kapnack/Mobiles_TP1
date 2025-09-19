@@ -16,18 +16,19 @@ public class PantallaCalibTuto : MonoBehaviour
 	
 	public ContrCalibracion ContrCalib;
 
-	// Use this for initialization
-	void Start () 
+	private Renderer renderer;
+	
+	private void Awake()
 	{
-	
+		renderer  = GetComponent<Renderer>();
 	}
-	
-	// Update is called once per frame
-	void Update () 
+
+	private void Update () 
 	{
 		switch(ContrCalib.EstAct)
 		{
 		case ContrCalibracion.Estados.Calibrando:
+			
 			//pongase en posicion para iniciar
 			TempoIntCalib += T.GetDT();
 			if(TempoIntCalib >= Intervalo)
@@ -38,11 +39,13 @@ public class PantallaCalibTuto : MonoBehaviour
 				else
 					EnCursoCalib = 0;
 			}
-			GetComponent<Renderer>().material.mainTexture = ImagenesDeCalib[EnCursoCalib];
+			
+			renderer.material.mainTexture = ImagenesDeCalib[EnCursoCalib];
 			
 			break;
 			
 		case ContrCalibracion.Estados.Tutorial:
+			
 			//tome la bolsa y depositela en el estante
 			TempoIntTuto += T.GetDT();
 			if(TempoIntTuto >= Intervalo)
@@ -53,13 +56,15 @@ public class PantallaCalibTuto : MonoBehaviour
 				else
 					EnCursoTuto = 0;
 			}
-			GetComponent<Renderer>().material.mainTexture = ImagenesDelTuto[EnCursoTuto];
+			
+			renderer.material.mainTexture = ImagenesDelTuto[EnCursoTuto];
 			
 			break;
 			
 		case ContrCalibracion.Estados.Finalizado:
+			
 			//esperando al otro jugador		
-			GetComponent<Renderer>().material.mainTexture = ImaReady;
+			renderer.material.mainTexture = ImaReady;
 			
 			break;
 		}

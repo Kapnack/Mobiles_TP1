@@ -6,8 +6,6 @@ public static class T
 	static float FDT;
 	static float DT;
 	
-	
-	
 	public static float GetDT()
 	{
 		if(!FifadoDT)

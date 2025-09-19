@@ -3,23 +3,21 @@ using System.Collections;
 
 public class ReductorVelColl : MonoBehaviour 
 {
-	public float ReduccionVel;
 	bool Usado = false;
 	public string PlayerTag = "Player";
-	
-	void OnCollisionEnter(Collision other) 
+
+	private void OnCollisionEnter(Collision other)
 	{
-		if(other.transform.tag == PlayerTag)
+		if (!other.transform.CompareTag(PlayerTag)) 
+			return;
+		
+		if(!Usado)
 		{
-			if(!Usado)
-			{
-				Chocado();
-				//other.transform.GetComponent<AcelerAuto>().Chocar(this);
-			}
+			Chocado();
 		}
 	}
-	
-	public virtual void Chocado()
+
+	protected virtual void Chocado()
 	{
 		Usado = true;
 	}

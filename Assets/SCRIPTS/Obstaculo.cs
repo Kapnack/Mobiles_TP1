@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Obstaculo : MonoBehaviour 
 {
-	public float ReduccionVel = 0;
 	public float TiempEmpDesapa = 1;
 	float Tempo1 = 0;
 	public float TiempDesapareciendo = 1;
@@ -13,10 +12,13 @@ public class Obstaculo : MonoBehaviour
 	bool Chocado = false;
 	bool Desapareciendo = false;
 
-	// Use this for initialization
-	void Start () 
+	private Rigidbody rb;
+	private Collider collider;
+	
+	private void Awake()
 	{
-		
+		rb = GetComponent<Rigidbody>();
+		collider = GetComponent<Collider>();
 	}
 	
 	// Update is called once per frame
@@ -29,8 +31,8 @@ public class Obstaculo : MonoBehaviour
 			{
 				Chocado = false;
 				Desapareciendo = true;
-				GetComponent<Rigidbody>().useGravity = false;
-				GetComponent<Collider>().enabled = false;
+				rb.useGravity = false;
+				collider.enabled = false;
 			}
 		}
 		
@@ -45,20 +47,14 @@ public class Obstaculo : MonoBehaviour
 			}
 		}
 	}
-	
-	void OnCollisionEnter(Collision coll)
+
+	private void OnCollisionEnter(Collision coll)
 	{
-		if(coll.transform.tag == PlayerTag)
+		if(coll.transform.CompareTag(PlayerTag))
 		{
 			Chocado = true;
 		}
 	}
 	
 	//------------------------------------------------//
-	
-	protected virtual void Desaparecer()
-	{}
-	
-	protected virtual void Colision()
-	{}
 }
