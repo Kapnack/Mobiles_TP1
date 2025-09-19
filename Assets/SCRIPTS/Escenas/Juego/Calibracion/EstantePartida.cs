@@ -1,13 +1,8 @@
 using UnityEngine;
-using System.Collections;
 
 public class EstantePartida : ManejoPallets
 {
-	//public Cinta CintaReceptora;//cinta que debe recibir la bolsa
-	public GameObject ManoReceptora;
-	//public Pallet.Valores Valor;
-	
-	void OnTriggerEnter(Collider other)
+	public void OnTriggerEnter(Collider other)
 	{
 		ManejoPallets recept = other.GetComponent<ManejoPallets>();
 		if(recept != null)

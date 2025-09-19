@@ -1,52 +1,53 @@
+using System;
 using UnityEngine;
 using System.Collections;
 
 public class FadeInicioFinal : MonoBehaviour 
 {
-	public float Duracion = 2;
-	public float Vel = 2;
-	float TiempInicial;
+    public float Duracion = 2;
+    float TiempInicial;
 	
-	MngPts Mng;
+    private MngPts Mng;
 	
-	Color aux;
+    private Color materialColor;
+    private Renderer renderer;
 	
-	bool MngAvisado = false;
-
-	// Use this for initialization
-	void Start ()
-	{
-		//renderer.material = IniFin;
-		Mng = (MngPts)GameObject.FindObjectOfType(typeof (MngPts));
-		TiempInicial = Mng.TiempEspReiniciar;
+    private bool MngAvisado;
+	
+    [Obsolete("Obsolete")]
+    private void Start ()
+    {
+        Mng = (MngPts)FindObjectOfType(typeof (MngPts));
+        TiempInicial = Mng.TiempEspReiniciar;
 		
-		aux = GetComponent<Renderer>().material.color;
-		aux.a = 0;
-		GetComponent<Renderer>().material.color = aux;
-	}
+        renderer = GetComponent<Renderer>();
+        
+        materialColor = GetComponent<Renderer>().material.color;
+        materialColor.a = 0;
+        
+        renderer.material.color = materialColor;
+    }
 	
-	// Update is called once per frame
-	void Update () 
-	{
-		
-		if(Mng.TiempEspReiniciar > TiempInicial - Duracion)//aparicion
-		{
-			aux = GetComponent<Renderer>().material.color;
-			aux.a += Time.deltaTime / Duracion;
-			GetComponent<Renderer>().material.color = aux;			
-		}
-		else if(Mng.TiempEspReiniciar < Duracion)//desaparicion
-		{
-			aux = GetComponent<Renderer>().material.color;
-			aux.a -= Time.deltaTime / Duracion;
-			GetComponent<Renderer>().material.color = aux;
+    private void Update () 
+    {
+        if(Mng.TiempEspReiniciar > TiempInicial - Duracion)//aparicion
+        {
+            materialColor = renderer.material.color;
+            materialColor.a += Time.deltaTime / Duracion;
+            renderer.material.color = materialColor;
+        }
+        else if(Mng.TiempEspReiniciar < Duracion)//desaparicion
+        {
+            materialColor = renderer.material.color;
+            materialColor.a -= Time.deltaTime / Duracion;
+            renderer.material.color = materialColor;
 			
-			if(!MngAvisado)
-			{
-				MngAvisado = true;
-				Mng.DesaparecerGUI();
-			}
-		}
+            if(!MngAvisado)
+            {
+                MngAvisado = true;
+                Mng.DesaparecerGUI();
+            }
+        }
 				
-	}
+    }
 }

@@ -11,36 +11,14 @@ public class ContrTutorial : MonoBehaviour
 	bool Iniciado = false;
 	
 	GameManager GM;
-	
-	//------------------------------------------------------------------//
-
-	// Use this for initialization
-	void Start () 
+	public void Start () 
 	{
 		GM = GameObject.Find("GameMgr").GetComponent<GameManager>();
 		
 		Pj.ContrTuto = this;
 	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-		/*
-		if(Iniciado)
-		{
-			if(Tempo < TiempTuto)
-			{
-				Tempo += T.GetDT();
-				if(Tempo >= TiempTuto)
-				{
-					Finalizar();
-				}
-			}
-		}
-		*/
-	}
-	
-	void OnTriggerEnter(Collider other)
+
+	private void OnTriggerEnter(Collider other)
 	{
 		if(other.GetComponent<Player>() == Pj)
 			Finalizar();
@@ -53,8 +31,8 @@ public class ContrTutorial : MonoBehaviour
 		Pj.GetComponent<Frenado>().RestaurarVel();
 		Iniciado = true;
 	}
-	
-	public void Finalizar()
+
+	private void Finalizar()
 	{
 		Finalizado = true;
 		GM.FinTutorial(Pj.IdPlayer);
