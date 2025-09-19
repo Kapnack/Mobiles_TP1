@@ -9,16 +9,14 @@ public class CollContraObst : MonoBehaviour
 	float Tempo2 = 0;
 	
 	enum Colisiones {ConTodo, EspDesact, SinObst}
-	Colisiones Colisiono = CollContraObst.Colisiones.ConTodo;
-
-	// Use this for initialization
-	void Start () 
+	Colisiones Colisiono = Colisiones.ConTodo;
+	
+	private void Start () 
 	{
 		Physics.IgnoreLayerCollision(8,10,false);
 	}
 	
-	// Update is called once per frame
-	void Update () 
+	private void Update () 
 	{
 		switch (Colisiono)
 		{
@@ -44,23 +42,21 @@ public class CollContraObst : MonoBehaviour
 			break;
 		}
 	}
-	
-	void OnCollisionEnter(Collision coll)
+
+	private void OnCollisionEnter(Collision coll)
 	{
-		if(coll.gameObject.tag == "Obstaculo")
+		if(coll.gameObject.CompareTag("Obstaculo"))
 		{
 			ColisionConObst();
 		}
 	}
-	
-	//-------------------------//
-	
-	void ColisionConObst()
+
+	private void ColisionConObst()
 	{
 		switch (Colisiono)
 		{
 		case Colisiones.ConTodo:
-			Colisiono = CollContraObst.Colisiones.EspDesact;
+			Colisiono = Colisiones.EspDesact;
 			break;
 			
 		case Colisiones.EspDesact:
@@ -86,11 +82,11 @@ public class CollContraObst : MonoBehaviour
 		
 		if(b)
 		{
-			Colisiono = CollContraObst.Colisiones.SinObst;
+			Colisiono = Colisiones.SinObst;
 		}
 		else
 		{
-			Colisiono = CollContraObst.Colisiones.ConTodo;
+			Colisiono = Colisiones.ConTodo;
 		}
 	}
 }

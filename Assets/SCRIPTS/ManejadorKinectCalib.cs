@@ -1,12 +1,10 @@
 using UnityEngine;
-using System.Collections;
 
 public class ManejadorKinectCalib : MonoBehaviour 
 {
 	public GameObject[] ParaAct;
-
-	// Use this for initialization
-	void Start ()
+	
+	private void Start ()
 	{
 		for(int i = 0; i < ParaAct.Length; i++)
 		{
@@ -15,7 +13,7 @@ public class ManejadorKinectCalib : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	private void Update () 
 	{
 		//DISTINTAS CAMARAS
 		if(Input.GetKeyDown(KeyCode.Keypad1))

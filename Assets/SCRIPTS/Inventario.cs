@@ -24,20 +24,13 @@ public class Inventario : MonoBehaviour
 	//------------------------------------------------------------------//
 	
 	// Use this for initialization
-	void Start () 
+	private void Start () 
 	{
 		Pj = GetComponent<Player>();
 	}
-	
-	// Update is called once per frame
-	void Update () 
+
+	private void OnGUI()
 	{
-	
-	}
-	
-	void OnGUI()
-	{
-		
 		switch(Pj.EstAct)
 		{
 		case Player.Estados.EnConduccion:
