@@ -3,32 +3,35 @@ using System.Collections;
 
 public class ManejoPallets : MonoBehaviour 
 {
-	protected System.Collections.Generic.List<Pallet> Pallets = new System.Collections.Generic.List<Pallet>();
+	protected struct PalletsComponents
+	{
+		public Renderer renderer;
+		public Pallet script;
+	}	
+	protected System.Collections.Generic.List<PalletsComponents> Pallets = new();
 	public ControladorDeDescarga Controlador;
-	protected int Contador = 0;
-	
+
 	public virtual bool Recibir(Pallet pallet)
 	{
+		var newPallet = new PalletsComponents
+		{
+			script = pallet,
+			renderer = pallet.GetComponent<Renderer>()
+		};
+
 		Debug.Log(gameObject.name+" / Recibir()");
-		Pallets.Add(pallet);
-		pallet.Pasaje();
+		Pallets.Add(newPallet);
+		newPallet.script.Pasaje();
+		
 		return true;
 	}
 	
 	public bool Tenencia()
 	{
-		
 		if(Pallets.Count != 0)
 			return true;
-		else
-			return false;
 		
-		/*
-		if(Pallets.Count > Contador)
-			return true;
-		else
-			return false;
-			*/
+		return false;
 	}
 	
 	public virtual void Dar(ManejoPallets receptor)

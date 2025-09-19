@@ -63,14 +63,17 @@ public class Estanteria : ManejoPallets
 	
 	public override void Dar(ManejoPallets receptor)
 	{
-        if (Tenencia()) {
-            if (Controlador.GetPalletEnMov() == null) {
-                if (receptor.Recibir(Pallets[0])) {
+        if (Tenencia()) 
+        {
+            if (!Controlador.GetPalletEnMov()) 
+            {
+                if (receptor.Recibir(Pallets[0].script)) 
+                {
                     //enciende la cinta y el indicador
                     //cambia la textura de cuantos pallet le queda
                     CintaReceptora.Encender();
-                    Controlador.SalidaPallet(Pallets[0]);
-                    Pallets[0].GetComponent<Renderer>().enabled = true;
+                    Controlador.SalidaPallet(Pallets[0].script);
+                    Pallets[0].renderer.enabled = true;
                     Pallets.RemoveAt(0);
                     Contenido.Sacar();
                     ApagarAnim();
@@ -82,7 +85,6 @@ public class Estanteria : ManejoPallets
 	
 	public override bool Recibir (Pallet pallet)
 	{
-		pallet.CintaReceptora = CintaReceptora.gameObject;
 		pallet.Portador = this.gameObject;
 		Contenido.Agregar();
 		pallet.GetComponent<Renderer>().enabled = false;

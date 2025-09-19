@@ -47,7 +47,7 @@ public class PalletMover : ManejoPallets {
         segundoCompleto = false;
     }
     void SegundoPaso() {
-        base.Pallets[0].transform.position = transform.position;
+        base.Pallets[0].script.transform.position = transform.position;
         segundoCompleto = true;
     }
     void TercerPaso() {
@@ -57,7 +57,7 @@ public class PalletMover : ManejoPallets {
 
     public override void Dar(ManejoPallets receptor) {
         if (Tenencia()) {
-            if (receptor.Recibir(Pallets[0])) {
+            if (receptor.Recibir(Pallets[0].script)) {
                 Pallets.RemoveAt(0);
             }
         }

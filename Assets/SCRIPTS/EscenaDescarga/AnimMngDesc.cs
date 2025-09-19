@@ -8,18 +8,20 @@ public class AnimMngDesc : MonoBehaviour
 	public ControladorDeDescarga ContrDesc;
 	
 	enum AnimEnCurso{Salida,Entrada,Nada}
-	AnimEnCurso AnimAct = AnimMngDesc.AnimEnCurso.Nada;
+	AnimEnCurso AnimAct = AnimEnCurso.Nada;
 	
 	public GameObject PuertaAnimada;
+
+	private Animation animation;
+	private Animation puertaAnimadaAnimation;
 	
-	// Use this for initialization
-	void Start () 
+	private void Awake ()
 	{
-	
+		animation = GetComponent<Animation>();
+		puertaAnimadaAnimation = PuertaAnimada.GetComponent<Animation>();
 	}
 	
-	// Update is called once per frame
-	void Update () 
+	private void Update () 
 	{
 		if(Input.GetKeyDown(KeyCode.Z))
 			Entrar();
@@ -30,7 +32,7 @@ public class AnimMngDesc : MonoBehaviour
 		{
 		case AnimEnCurso.Entrada:
 			
-			if(!GetComponent<Animation>().IsPlaying(AnimEntrada))
+			if(!animation.IsPlaying(AnimEntrada))
 			{
 				AnimAct = AnimMngDesc.AnimEnCurso.Nada;
 				ContrDesc.FinAnimEntrada();
@@ -41,7 +43,7 @@ public class AnimMngDesc : MonoBehaviour
 			
 		case AnimEnCurso.Salida:
 			
-			if(!GetComponent<Animation>().IsPlaying(AnimSalida))
+			if(!animation.IsPlaying(AnimSalida))
 			{
 				AnimAct = AnimMngDesc.AnimEnCurso.Nada;
 				ContrDesc.FinAnimSalida();
@@ -58,26 +60,26 @@ public class AnimMngDesc : MonoBehaviour
 	public void Entrar()
 	{
 		AnimAct = AnimMngDesc.AnimEnCurso.Entrada;
-		GetComponent<Animation>().Play(AnimEntrada);
+		animation.Play(AnimEntrada);
 		
 		if(PuertaAnimada != null)
 		{
-			PuertaAnimada.GetComponent<Animation>()["AnimPuerta"].time = 0;
-			PuertaAnimada.GetComponent<Animation>()["AnimPuerta"].speed = 1;
-			PuertaAnimada.GetComponent<Animation>().Play("AnimPuerta");
+			puertaAnimadaAnimation["AnimPuerta"].time = 0;
+			puertaAnimadaAnimation["AnimPuerta"].speed = 1;
+			puertaAnimadaAnimation.Play("AnimPuerta");
 		}
 	}
 	
 	public void Salir()
 	{
-		AnimAct = AnimMngDesc.AnimEnCurso.Salida;	
-		GetComponent<Animation>().Play(AnimSalida);
+		AnimAct = AnimEnCurso.Salida;	
+		animation.Play(AnimSalida);
 		
 		if(PuertaAnimada != null)
 		{
-			PuertaAnimada.GetComponent<Animation>()["AnimPuerta"].time = PuertaAnimada.GetComponent<Animation>()["AnimPuerta"].length;
-			PuertaAnimada.GetComponent<Animation>()["AnimPuerta"].speed = -1;
-			PuertaAnimada.GetComponent<Animation>().Play("AnimPuerta");
+			puertaAnimadaAnimation["AnimPuerta"].time = PuertaAnimada.GetComponent<Animation>()["AnimPuerta"].length;
+			puertaAnimadaAnimation["AnimPuerta"].speed = -1;
+			puertaAnimadaAnimation.Play("AnimPuerta");
 		}
 	}
 }

@@ -5,11 +5,20 @@ public class Pallet : MonoBehaviour
 {
 	public Valores Valor;
 	public float Tiempo;
-	public GameObject CintaReceptora = null;
-	public GameObject Portador = null;
+
+	private GameObject portador;
+	public GameObject Portador
+	{
+		get => portador;
+		set
+		{
+			portador = value;
+			manoReceptora = value.GetComponent<ManoRecept>();
+		}
+	}
 	public float TiempEnCinta = 1.5f;
 	public float TempoEnCinta = 0;
-	
+
 	public enum Valores {Valor1 = 100000, 
 						 Valor2 = 250000, 
 						 Valor3 = 500000}
@@ -19,48 +28,46 @@ public class Pallet : MonoBehaviour
 	float TempoSmoot = 0;
 	public bool EnSmoot = false;
 	
-	//----------------------------------------------//
+	ManoRecept manoReceptora;
 	
-	void Start()
+	//----------------------------------------------//
+
+	private void Start()
 	{
 		Pasaje();
 	}
-	
-	void LateUpdate () 
+
+	private void LateUpdate ()
 	{
-		if(Portador != null)
+		if (!Portador) 
+			return;
+		
+		if(EnSmoot)
 		{
-			if(EnSmoot)
+			TempoSmoot += T.GetDT();
+			if(TempoSmoot >= TiempSmoot)
 			{
-				TempoSmoot += T.GetDT();
-				if(TempoSmoot >= TiempSmoot)
-				{
-					EnSmoot = false;
-					TempoSmoot = 0;
-				}
-				else
-				{
-					print("smoot");
-					
-					if(Portador.GetComponent<ManoRecept>() != null)
-						transform.position = Portador.transform.position - Vector3.up * 1.2f;
-					else
-						transform.position = Vector3.Lerp(transform.position, Portador.transform.position, T.GetDT() * 10);
-				}
-				
+				EnSmoot = false;
+				TempoSmoot = 0;
 			}
 			else
 			{
-				print("crudo");
-				
-				if(Portador.GetComponent<ManoRecept>() != null)
+				if(manoReceptora)
 					transform.position = Portador.transform.position - Vector3.up * 1.2f;
 				else
-					transform.position = Portador.transform.position;
-					
+					transform.position = Vector3.Lerp(transform.position, Portador.transform.position, T.GetDT() * 10);
 			}
+				
 		}
-			
+		else
+		{
+			if(manoReceptora)
+				transform.position = Portador.transform.position - Vector3.up * 1.2f;
+			else
+				transform.position = Portador.transform.position;
+					
+		}
+
 	}
 	
 	//----------------------------------------------//

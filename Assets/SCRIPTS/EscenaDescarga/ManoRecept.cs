@@ -45,7 +45,7 @@ public class ManoRecept : ManejoPallets
 				//Debug.Log(gameObject.name+ " / Dar()"+" / Tenencia=true");
 				if(receptor.name == "Right Hand")
 				{
-					if(receptor.Recibir(Pallets[0]))
+					if(receptor.Recibir(Pallets[0].script))
 					{
 						//Debug.Log(gameObject.name+ " / Dar()"+" / Tenencia=true"+" / receptor.Recibir(Pallets[0])=true");
 						Pallets.RemoveAt(0);
@@ -59,7 +59,7 @@ public class ManoRecept : ManejoPallets
 		case "Cinta":
 			if(Tenencia())
 			{
-				if(receptor.Recibir(Pallets[0]))
+				if(receptor.Recibir(Pallets[0].script))
 				{
 					Pallets.RemoveAt(0);
 					//Debug.Log("pallet entregado a Cinta de Mano");
