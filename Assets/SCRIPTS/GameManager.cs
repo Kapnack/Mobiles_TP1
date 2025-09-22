@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -344,6 +345,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    [Obsolete("Obsolete")]
     void CambiarACarrera()
     {
         for (int i = 0; i < ObjsCarrera.Length; i++)
@@ -402,7 +404,7 @@ public class GameManager : MonoBehaviour
         Player1.transform.forward = Vector3.forward;
         Player2.transform.forward = Vector3.forward;
 
-        EstAct = GameManager.EstadoJuego.Jugando;
+        EstAct = EstadoJuego.Jugando;
     }
 
     public void FinTutorial(int playerID)
@@ -433,9 +435,9 @@ public class GameManager : MonoBehaviour
             PlayerInfo2.FinTuto1 = true;
         }
 
-        if (PlayerInfo1.PJ != null && PlayerInfo2.PJ != null)
+        if (PlayerInfo1.PJ && PlayerInfo2.PJ)
             if (PlayerInfo1.FinTuto1 && PlayerInfo2.FinTuto1)
-                CambiarACarrera(); //CambiarATutorial();
+                CambiarACarrera();
     }
 
 

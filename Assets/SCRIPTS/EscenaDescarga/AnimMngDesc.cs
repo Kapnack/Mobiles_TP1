@@ -45,7 +45,7 @@ public class AnimMngDesc : MonoBehaviour
 			
 			if(!animation.IsPlaying(AnimSalida))
 			{
-				AnimAct = AnimMngDesc.AnimEnCurso.Nada;
+				AnimAct = AnimEnCurso.Nada;
 				ContrDesc.FinAnimSalida();
 				print("fin Anim Salida");
 			}
@@ -62,7 +62,7 @@ public class AnimMngDesc : MonoBehaviour
 		AnimAct = AnimMngDesc.AnimEnCurso.Entrada;
 		animation.Play(AnimEntrada);
 		
-		if(PuertaAnimada != null)
+		if(PuertaAnimada)
 		{
 			puertaAnimadaAnimation["AnimPuerta"].time = 0;
 			puertaAnimadaAnimation["AnimPuerta"].speed = 1;
@@ -75,9 +75,9 @@ public class AnimMngDesc : MonoBehaviour
 		AnimAct = AnimEnCurso.Salida;	
 		animation.Play(AnimSalida);
 		
-		if(PuertaAnimada != null)
+		if(PuertaAnimada)
 		{
-			puertaAnimadaAnimation["AnimPuerta"].time = PuertaAnimada.GetComponent<Animation>()["AnimPuerta"].length;
+			puertaAnimadaAnimation["AnimPuerta"].time = puertaAnimadaAnimation["AnimPuerta"].length;
 			puertaAnimadaAnimation["AnimPuerta"].speed = -1;
 			puertaAnimadaAnimation.Play("AnimPuerta");
 		}

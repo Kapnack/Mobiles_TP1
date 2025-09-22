@@ -80,9 +80,9 @@ public class ContrCalibracion : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (EstAct == ContrCalibracion.Estados.Tutorial)
+        if (EstAct == Estados.Tutorial)
         {
             if (Tempo2 < TiempEspCalib)
             {

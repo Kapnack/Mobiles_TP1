@@ -3,9 +3,7 @@ using System.Collections;
 
 public class Deposito2 : MonoBehaviour 
 {
-	
 	Player PjActual;
-	public string PlayerTag = "Player";
 	public bool Vacio = true;
 	public ControladorDeDescarga Contr1;
 	public ControladorDeDescarga Contr2;
@@ -36,36 +34,21 @@ public class Deposito2 : MonoBehaviour
 	
 	public void Soltar()
 	{
-		PjActual.VaciarInv();
-		PjActual.GetComponent<Frenado>().RestaurarVel();
-		PjActual.GetComponent<Respawn>().Respawnear(transform.position,transform.forward);
-		
-		PjActual.GetComponent<Rigidbody>().useGravity = true;
-		for(int i = 0; i < PjColl.Length; i++)
-			PjColl[i].enabled = true;
+		PjActual.SalirDelDeposito(transform.position, transform.forward);
 		
 		Physics.IgnoreLayerCollision(8,9,false);
 		
 		PjActual = null;
 		Vacio = true;
-		
-	
 	}
 	
 	public void Entrar(Player pj)
 	{
 		if(pj.ConBolasas())
 		{
-			
 			PjActual = pj;
-			
-			PjColl = PjActual.GetComponentsInChildren<Collider>();
-			for(int i = 0; i < PjColl.Length; i++)
-				PjColl[i].enabled = false;
-			PjActual.GetComponent<Rigidbody>().useGravity = false;
-			
-			PjActual.transform.position = transform.position;
-			PjActual.transform.forward = transform.forward;
+
+			pj.EntrarAlDeposito(transform.position, transform.forward);
 			
 			Vacio = false;
 			
@@ -74,8 +57,8 @@ public class Deposito2 : MonoBehaviour
 			Entro();
 		}
 	}
-	
-	public void Entro()
+
+	private void Entro()
 	{		
 		if(PjActual.IdPlayer == 0)
 			Contr1.Activar(this);
