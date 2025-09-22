@@ -9,17 +9,17 @@ public class CheakPoint : MonoBehaviour
     float Tempo = 0;
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         GetComponent<Renderer>().enabled = false;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (!HabilitadoResp)
         {
-            Tempo += T.GetDT();
+            Tempo += Time.deltaTime;
             if (Tempo >= TiempPermanencia)
             {
                 Tempo = 0;

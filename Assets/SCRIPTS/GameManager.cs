@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
         IniciarCalibracion();
     }
 
-    void Update()
+    private void Update()
     {
         //REINICIAR
         if (Input.GetKey(KeyCode.Mouse1) &&
@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour
 
                 if (ConteoRedresivo)
                 {
-                    ConteoParaInicion -= T.GetDT();
+                    ConteoParaInicion -= Time.deltaTime;
                     if (ConteoParaInicion < 0)
                     {
                         EmpezarCarrera();
@@ -157,7 +157,7 @@ public class GameManager : MonoBehaviour
                 else
                 {
                     //baja el tiempo del juego
-                    TiempoDeJuego -= T.GetDT();
+                    TiempoDeJuego -= Time.deltaTime;
                     if (TiempoDeJuego <= 0)
                     {
                         //termina el juego

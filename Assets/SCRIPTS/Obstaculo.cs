@@ -21,12 +21,11 @@ public class Obstaculo : MonoBehaviour
 		collider = GetComponent<Collider>();
 	}
 	
-	// Update is called once per frame
-	void Update () 
+	private void Update () 
 	{
 		if(Chocado)
 		{
-			Tempo1 += T.GetDT();
+			Tempo1 += Time.deltaTime;
 			if(Tempo1 > TiempEmpDesapa)
 			{
 				Chocado = false;
@@ -40,7 +39,7 @@ public class Obstaculo : MonoBehaviour
 		{
 			//animacion de desaparecer
 			
-			Tempo2 += T.GetDT();
+			Tempo2 += Time.deltaTime;
 			if(Tempo2 > TiempDesapareciendo)
 			{
 				gameObject.SetActiveRecursively(false);
