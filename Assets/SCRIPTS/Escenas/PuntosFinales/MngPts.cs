@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Systems;
 
 public class MngPts : MonoBehaviour
 {
@@ -46,7 +47,7 @@ public class MngPts : MonoBehaviour
             Input.GetKeyDown(KeyCode.Return) ||
             Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Application.LoadLevel(0);
+            SceneOrganizer.Instance.LoadGameplayScene();
         }
 
         //CIERRA LA APLICACION
@@ -59,7 +60,7 @@ public class MngPts : MonoBehaviour
         TiempEspReiniciar -= Time.deltaTime;
         if (TiempEspReiniciar <= 0)
         {
-            Application.LoadLevel(0);
+            SceneOrganizer.Instance.LoadGameplayScene();
         }
 
 

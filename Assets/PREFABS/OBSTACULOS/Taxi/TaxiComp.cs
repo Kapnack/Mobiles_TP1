@@ -41,7 +41,7 @@ public class TaxiComp : MonoBehaviour
 	//-----------------------------------------------------------------//
 
 	// Use this for initialization
-	void Start () 
+	private void Start () 
 	{
 		TiempEntreGiro = (float) Random.Range(TiempCadaCuantoDobla_MaxMin.x, TiempCadaCuantoDobla_MaxMin.y);
 		RotIni = this.transform.localEulerAngles;
@@ -49,9 +49,8 @@ public class TaxiComp : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	private void Update () 
 	{
-		
 		if(Respawneando)
 		{
 			if(Medicion())

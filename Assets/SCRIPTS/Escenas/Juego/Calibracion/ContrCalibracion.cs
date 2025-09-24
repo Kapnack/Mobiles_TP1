@@ -4,22 +4,9 @@ using System.Collections;
 public class ContrCalibracion : MonoBehaviour
 {
     public Player Pj;
-
-    /*
-    public string ManoIzqName = "Left Hand";
-    public string ManoDerName = "Right Hand";
-
-    bool StayIzq = false;
-    bool StayDer = false;
-    */
-    /*
-    public float TiempCalib = 3;
-    float Tempo = 0;
-    */
+    
     public float TiempEspCalib = 3;
     float Tempo2 = 0;
-
-    //bool EnTutorial = false;
 
     public enum Estados
     {
@@ -61,14 +48,9 @@ public class ContrCalibracion : MonoBehaviour
         partidaRenderer = Partida.GetComponent<Renderer>();
         partidaCollider = Partida.GetComponent<Collider>();
     }
-
-    // Use this for initialization
-    void Start()
+    
+    public void Start()
     {
-        /*
-        renderer.enabled = false;
-        collider.enabled = false;
-        */
         palletsMover.enabled = false;
         Pj.ContrCalib = this;
 
@@ -78,8 +60,7 @@ public class ContrCalibracion : MonoBehaviour
 
         SetActivComp(false);
     }
-
-    // Update is called once per frame
+    
     private void Update()
     {
         if (EstAct == Estados.Tutorial)

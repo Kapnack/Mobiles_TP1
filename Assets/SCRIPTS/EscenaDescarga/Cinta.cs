@@ -98,12 +98,12 @@ public class Cinta : ManejoPallets
     public override bool Recibir(Pallet p)
     {
         Tempo = 0;
-        Controlador.LlegadaPallet(p);
+        Controlador.LlegadaPallet();
         p.Portador = this.gameObject;
         ConPallet = true;
         ObjAct = p.transform;
         base.Recibir(p);
-        //p.GetComponent<Pallet>().enabled = false;
+        
         Apagar();
 
         return true;

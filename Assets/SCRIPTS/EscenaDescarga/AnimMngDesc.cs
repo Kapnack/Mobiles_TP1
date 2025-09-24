@@ -59,7 +59,7 @@ public class AnimMngDesc : MonoBehaviour
 	
 	public void Entrar()
 	{
-		AnimAct = AnimMngDesc.AnimEnCurso.Entrada;
+		AnimAct = AnimEnCurso.Entrada;
 		animation.Play(AnimEntrada);
 		
 		if(PuertaAnimada)

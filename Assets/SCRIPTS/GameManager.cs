@@ -1,6 +1,9 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
+using Systems;
+using UnityEngine.AddressableAssets;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +11,10 @@ public class GameManager : MonoBehaviour
 
     public float TiempoDeJuego = 60;
 
+    [SerializeField] private AssetReference CuartoDeCalibracion;
+    [SerializeField] private AssetReference DescargaScene;
+    private GameObject op;
+    
     public enum EstadoJuego
     {
         Calibrando,
@@ -78,7 +85,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse1) &&
             Input.GetKey(KeyCode.Keypad0))
         {
-            Application.LoadLevel(Application.loadedLevel);
+            SceneOrganizer.Instance.LoadGameplayScene();
         }
 
         //CIERRA LA APLICACION
@@ -171,7 +178,7 @@ public class GameManager : MonoBehaviour
 
                 TiempEspMuestraPts -= Time.deltaTime;
                 if (TiempEspMuestraPts <= 0)
-                    Application.LoadLevel(Application.loadedLevel + 1);
+                   SceneOrganizer.Instance.LoadEndGameScene();
 
                 break;
         }
@@ -239,41 +246,7 @@ public class GameManager : MonoBehaviour
         Player2.CambiarACalibracion();
     }
 
-    void CambiarATutorial()
-    {
-        for (int i = 0; i < ObjsTuto1.Length; i++)
-        {
-            ObjsTuto1[i].SetActiveRecursively(true);
-        }
-
-        for (int i = 0; i < ObjsCalibracion1.Length; i++)
-        {
-            ObjsCalibracion1[i].SetActiveRecursively(false);
-        }
-
-        Player1.GetComponent<Frenado>().Frenar();
-        Player1.CambiarATutorial();
-        Player1.gameObject.transform.position = PosCamion1Tuto; //posiciona el camion
-        Player1.transform.forward = Vector3.forward;
-
-
-        for (int i = 0; i < ObjsCalibracion2.Length; i++)
-        {
-            ObjsCalibracion2[i].SetActiveRecursively(false);
-        }
-
-        for (int i = 0; i < ObjsTuto2.Length; i++)
-        {
-            ObjsTuto2[i].SetActiveRecursively(true);
-        }
-
-        Player2.GetComponent<Frenado>().Frenar();
-        Player2.gameObject.transform.position = PosCamion2Tuto;
-        Player2.CambiarATutorial();
-        Player2.transform.forward = Vector3.forward;
-    }
-
-    void EmpezarCarrera()
+    private void EmpezarCarrera()
     {
         Player1.GetComponent<Frenado>().RestaurarVel();
         Player1.GetComponent<ControlDireccion>().Habilitado = true;
@@ -282,9 +255,9 @@ public class GameManager : MonoBehaviour
         Player2.GetComponent<ControlDireccion>().Habilitado = true;
     }
 
-    void FinalizarCarrera()
+    private void FinalizarCarrera()
     {
-        EstAct = GameManager.EstadoJuego.Finalizado;
+        EstAct = EstadoJuego.Finalizado;
 
         TiempoDeJuego = 0;
 

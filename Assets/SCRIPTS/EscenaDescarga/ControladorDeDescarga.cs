@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class ControladorDeDescarga : MonoBehaviour 
 {
@@ -59,7 +60,7 @@ public class ControladorDeDescarga : MonoBehaviour
 	void Update () 
 	{
 		//contador de tiempo
-		if(PEnMov != null)
+		if(PEnMov)
 		{
 			if(TempoBonus > 0)
 			{
@@ -105,16 +106,19 @@ public class ControladorDeDescarga : MonoBehaviour
 				{
 				case Pallet.Valores.Valor1:
 					go = (GameObject) Instantiate(Pallet1);
+					SceneManager.MoveGameObjectToScene(go, gameObject.scene);
 					Est1.Recibir(go.GetComponent<Pallet>());
 					break;
 					
 				case Pallet.Valores.Valor2:
 					go = (GameObject) Instantiate(Pallet2);
+					SceneManager.MoveGameObjectToScene(go, gameObject.scene);
 					Est2.Recibir(go.GetComponent<Pallet>());
 					break;
 					
 				case Pallet.Valores.Valor3:
 					go = (GameObject) Instantiate(Pallet3);
+					SceneManager.MoveGameObjectToScene(go, gameObject.scene);
 					Est3.Recibir(go.GetComponent<Pallet>());
 					break;
 				}
@@ -135,7 +139,7 @@ public class ControladorDeDescarga : MonoBehaviour
 	}
 	
 	//cuando llega a la cinta
-	public void LlegadaPallet(Pallet p)
+	public void LlegadaPallet()
 	{
 		//termina el contador y suma los pts
 		

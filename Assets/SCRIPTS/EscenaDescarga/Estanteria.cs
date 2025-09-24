@@ -17,15 +17,19 @@ public class Estanteria : ManejoPallets
 	public Color32 ColorParpadeo;
 	Color32 ColorOrigModel;
 	
-	//--------------------------------//	
+	private Renderer renderer;
 	
-	void Start () 
+	//--------------------------------//	
+
+	private void Start () 
 	{
 		Contenido = GetComponent<PilaPalletMng>();
+		renderer = ModelSuelo.GetComponent<Renderer>();
+		
 		ColorOrigModel = ModelSuelo.GetComponent<Renderer>().material.color;
 	}
-	
-	void Update () 
+
+	private void Update () 
 	{
 		//animacion de parpadeo
 		if(Anim)
@@ -33,24 +37,24 @@ public class Estanteria : ManejoPallets
 			AnimTempo += Time.deltaTime;
 			if(AnimTempo > Permanencia)
 			{
-				if(ModelSuelo.GetComponent<Renderer>().material.color == ColorParpadeo)
+				if(renderer.material.color == ColorParpadeo)
 				{
 					AnimTempo = 0;
-					ModelSuelo.GetComponent<Renderer>().material.color = ColorOrigModel;
+					renderer.material.color = ColorOrigModel;
 				}
 			}
 			if(AnimTempo > Intervalo)
 			{
-				if(ModelSuelo.GetComponent<Renderer>().material.color == ColorOrigModel)
+				if(renderer.material.color == ColorOrigModel)
 				{
 					AnimTempo = 0;
-					ModelSuelo.GetComponent<Renderer>().material.color = ColorParpadeo;
+					renderer.material.color = ColorParpadeo;
 				}
 			}
 		}
 	}
-	
-	void OnTriggerEnter(Collider other)
+
+	private void OnTriggerEnter(Collider other)
 	{
 		ManejoPallets recept = other.GetComponent<ManejoPallets>();
 		if(recept != null)
@@ -85,20 +89,20 @@ public class Estanteria : ManejoPallets
 	
 	public override bool Recibir (Pallet pallet)
 	{
-		pallet.Portador = this.gameObject;
+		pallet.Portador = gameObject;
 		Contenido.Agregar();
 		pallet.GetComponent<Renderer>().enabled = false;
 		return base.Recibir (pallet);
 	}
-	
-	public void ApagarAnim()
+
+	private void ApagarAnim()
 	{
 		Anim = false;
-		ModelSuelo.GetComponent<Renderer>().material.color = ColorOrigModel;
+		renderer.material.color = ColorOrigModel;
 	}
 	public void EncenderAnim()
 	{
 		Anim = true;
-		ModelSuelo.GetComponent<Renderer>().material.color = ColorOrigModel;
+		renderer.material.color = ColorOrigModel;
 	}
 }

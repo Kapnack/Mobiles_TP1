@@ -15,13 +15,28 @@ MonoBehaviour:
   m_GroupName: Gameplay
   m_GUID: 8b8e19f994d09e24d96a58267a8b9deb
   m_SerializeEntries:
+  - m_GUID: 1690b561f04935d49a73ca50c694008e
+    m_Address: EscenaCalibracion2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1de2db86cb1bd9e46ac38fc83ef43c1e
+    m_Address: CalibracionScena
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 514ac53862939534083df9fb1d9b6d0d
     m_Address: Bolsa Dinero
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b81b1a58a0f14c9439cbdd014e695f71
-    m_Address: Camion
+  - m_GUID: 6c4c059d1f5e35f4a953447b725d3f3c
+    m_Address: DescargaScene
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d51804bd0d9403e49a88baf01d71c3ae
+    m_Address: EscenaCalibracion2
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

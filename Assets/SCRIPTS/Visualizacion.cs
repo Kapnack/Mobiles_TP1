@@ -240,7 +240,7 @@ public class Visualizacion : MonoBehaviour
         }
     }
 
-    void SetDinero()
+    private void SetDinero()
     {
         GUI.skin = GS_Din;
 
@@ -252,55 +252,6 @@ public class Visualizacion : MonoBehaviour
             R.x = DinPos[1].x * Screen.width / 100;
         //R.x = (Screen.width) - (Screen.width/2) - R.x;
         GUI.Box(R, "$" + PrepararNumeros(Pj.Dinero));
-    }
-
-    void SetCalibr()
-    {
-        GUI.skin = GS_TutoCalib;
-
-        R.width = ReadyEsc.x * Screen.width / 100;
-        R.height = ReadyEsc.y * Screen.height / 100;
-        R.x = ReadyPos.x * Screen.width / 100;
-        R.y = ReadyPos.y * Screen.height / 100;
-        if (LadoAct == Visualizacion.Lado.Der)
-            R.x = (Screen.width) - R.x - R.width;
-
-        switch (Pj.ContrCalib.EstAct)
-        {
-            case ContrCalibracion.Estados.Calibrando:
-
-                //pongase en posicion para iniciar
-                GS_TutoCalib.box.normal.background = ImaEnPosicion;
-                GUI.Box(R, "");
-
-                break;
-
-            case ContrCalibracion.Estados.Tutorial:
-                //tome la bolsa y depositela en el estante
-
-                TempoIntTuto += Time.deltaTime;
-                if (TempoIntTuto >= Intervalo)
-                {
-                    TempoIntTuto = 0;
-                    if (EnCurso + 1 < ImagenesDelTuto.Length)
-                        EnCurso++;
-                    else
-                        EnCurso = 0;
-                }
-
-                GS_TutoCalib.box.normal.background = ImagenesDelTuto[EnCurso];
-
-                GUI.Box(R, "");
-
-                break;
-
-            case ContrCalibracion.Estados.Finalizado:
-                //esperando al otro jugador		
-                GS_TutoCalib.box.normal.background = ImaReady;
-                GUI.Box(R, "");
-
-                break;
-        }
     }
 
     private void SetTuto()
@@ -344,36 +295,6 @@ public class Visualizacion : MonoBehaviour
         GUIUtility.RotateAroundPivot(angulo * (-1), centro);
     }
 
-    private void SetInv2()
-    {
-        GUI.skin = GS_Inv;
-
-        R.width = FondoEsc.x * Screen.width / 100;
-        R.height = FondoEsc.y * Screen.width / 100;
-        R.x = FondoPos[0].x * Screen.width / 100;
-        R.y = FondoPos[0].y * Screen.height / 100;
-
-        int contador = 0;
-        for (int i = 0; i < 3; i++)
-        {
-            if (Pj.Bolasas[i] != null)
-                contador++;
-        }
-
-        if (LadoAct == Visualizacion.Lado.Der)
-        {
-            //R.x = (Screen.width) - R.x - R.width;
-            R.x = FondoPos[1].x * Screen.width / 100;
-            GS_Inv.box.normal.background = TextInvDer[contador];
-        }
-        else
-        {
-            GS_Inv.box.normal.background = TextInvIzq[contador];
-        }
-
-        GUI.Box(R, "");
-    }
-
     private void SetInv3()
     {
         GUI.skin = GS_Inv;
@@ -386,7 +307,7 @@ public class Visualizacion : MonoBehaviour
         int contador = 0;
         for (int i = 0; i < 3; i++)
         {
-            if (Pj.Bolasas[i] != null)
+            if (Pj.Bolasas[i])
                 contador++;
         }
 

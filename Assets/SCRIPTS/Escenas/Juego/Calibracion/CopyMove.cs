@@ -7,7 +7,6 @@ public class CopyMove : MonoBehaviour
 
 	private void LateUpdate () 
 	{
-		transform.position = Target.position;// + Target.transform.right * Diferencia;
-		//transform.localRotation = Target.localRotation;
+		transform.position = Target.position;
 	}
 }
