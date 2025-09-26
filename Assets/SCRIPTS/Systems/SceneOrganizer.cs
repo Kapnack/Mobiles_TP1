@@ -13,52 +13,55 @@ namespace Systems
         [SerializeField] private SceneRef gameplayScene;
         [SerializeField] private SceneRef endGameScene;
 
+        private SceneRef[] _sceneToLoad;
+        
+        private LoadingScreen _loadingScreen;
+        
         protected override void Awake()
         {
             base.Awake();
             
+            _loadingScreen = GetComponent<LoadingScreen>();
+                
             _sceneLoader = GetComponent<ISceneLoader>();
 
             LoadMainMenuScene();
         }
 
-        public async void LoadMainMenuScene()
+        public void LoadMainMenuScene()
         {
-            try
-            {
-                await _sceneLoader.UnloadAll();
-                await _sceneLoader.LoadSceneAsync(mainMenuScene);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+            _sceneToLoad = new[] {mainMenuScene};
+            TryChangeScene(_sceneToLoad);
         }
 
-        public async void LoadGameplayScene()
+        public void LoadGameplayScene()
         {
-            try
-            {
-                await _sceneLoader.UnloadAll();
-                await _sceneLoader.LoadSceneAsync(gameplayScene);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+            _sceneToLoad = new[] {gameplayScene};
+            TryChangeScene(_sceneToLoad);
         }
 
-        public async void LoadEndGameScene()
+        public void LoadEndGameScene()
         {
+            _sceneToLoad = new[] {endGameScene};
+            
+            TryChangeScene(_sceneToLoad);
+        }
+
+        private async void TryChangeScene(SceneRef[] newSceneRef)
+        {
+            _loadingScreen.StartLoadingScreen();
+            
             try
             {
                 await _sceneLoader.UnloadAll();
-                await _sceneLoader.LoadSceneAsync(endGameScene);
+                await _sceneLoader.LoadSceneAsync(newSceneRef);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
+            
+            _loadingScreen.EndLoadingScreen();
         }
     }
 }
