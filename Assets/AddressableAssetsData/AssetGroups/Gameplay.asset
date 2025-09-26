@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Gameplay
   m_GUID: 8b8e19f994d09e24d96a58267a8b9deb
   m_SerializeEntries:
+  - m_GUID: 1266bd48dc2005a49bde0e5c3f6f5459
+    m_Address: Assets/PREFABS/Obstaculos.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1690b561f04935d49a73ca50c694008e
     m_Address: EscenaCalibracion2
     m_ReadOnly: 0

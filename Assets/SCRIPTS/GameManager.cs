@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Systems;
 using UnityEngine.AddressableAssets;
 
@@ -11,10 +12,9 @@ public class GameManager : MonoBehaviour
 
     public float TiempoDeJuego = 60;
 
-    [SerializeField] private AssetReference CuartoDeCalibracion;
-    [SerializeField] private AssetReference DescargaScene;
+    [SerializeField] private AssetReference Obstaculos;
     private GameObject op;
-    
+
     public enum EstadoJuego
     {
         Calibrando,
@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] ObjsCarrera;
 
     IList<int> users;
+    private GameObject ObstaculosGO;
 
     //--------------------------------------------------------//
 
@@ -178,7 +179,7 @@ public class GameManager : MonoBehaviour
 
                 TiempEspMuestraPts -= Time.deltaTime;
                 if (TiempEspMuestraPts <= 0)
-                   SceneOrganizer.Instance.LoadEndGameScene();
+                    SceneOrganizer.Instance.LoadEndGameScene();
 
                 break;
         }
@@ -236,11 +237,6 @@ public class GameManager : MonoBehaviour
             ObjsTuto1[i].SetActiveRecursively(false);
         }
 
-        for (int i = 0; i < ObjsCarrera.Length; i++)
-        {
-            ObjsCarrera[i].SetActiveRecursively(false);
-        }
-
 
         Player1.CambiarACalibracion();
         Player2.CambiarACalibracion();
@@ -257,6 +253,8 @@ public class GameManager : MonoBehaviour
 
     private void FinalizarCarrera()
     {
+        Addressables.ReleaseInstance(ObstaculosGO);
+
         EstAct = EstadoJuego.Finalizado;
 
         TiempoDeJuego = 0;
@@ -319,12 +317,12 @@ public class GameManager : MonoBehaviour
     }
 
     [Obsolete("Obsolete")]
-    void CambiarACarrera()
+    private async void CambiarACarrera()
     {
-        for (int i = 0; i < ObjsCarrera.Length; i++)
-        {
-            ObjsCarrera[i].SetActiveRecursively(true);
-        }
+        var handle = Addressables.InstantiateAsync(Obstaculos);
+
+        ObstaculosGO = await handle.Task;
+        ObstaculosGO.transform.position = new Vector3(-19.49809f, 5.903175f, 5392.36f);
 
         for (int i = 0; i < ObjsTuto1.Length; i++)
         {
@@ -414,7 +412,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    [System.Serializable]
+    [Serializable]
     public class PlayerInfo
     {
         public PlayerInfo(int tipoDeInput, Player pj)
