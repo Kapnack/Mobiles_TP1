@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     public int IdPlayer = 0;
 
     public Bolsa[] Bolasas;
-    int CantBolsAct = 0;
+    public int CantBolsAct = 0;
 
     public enum Estados
     {
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     public ControladorDeDescarga ContrDesc;
     public ContrCalibracion ContrCalib;
     public ContrTutorial ContrTuto;
-
+    public ControlDireccion ControlDire;
     Visualizacion MiVisualizacion;
 
     private Frenado frenado;
@@ -34,12 +34,8 @@ public class Player : MonoBehaviour
 
     //------------------------------------------------------------------//
 
-    // Use this for initialization
-    private void Start()
+    private void Awake()
     {
-        for (int i = 0; i < Bolasas.Length; i++)
-            Bolasas[i] = null;
-
         MiVisualizacion = GetComponent<Visualizacion>();
 
         frenado = GetComponent<Frenado>();
@@ -48,6 +44,16 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         col = GetComponent<Collider>();
+
+        ControlDire = GetComponent<ControlDireccion>();
+
+        rb.useGravity = false;
+    }
+
+    private void Start()
+    {
+        for (int i = 0; i < Bolasas.Length; i++)
+            Bolasas[i] = null;
     }
 
     //------------------------------------------------------------------//
@@ -107,8 +113,14 @@ public class Player : MonoBehaviour
 
     public void CambiarAConduccion()
     {
+        rb.useGravity = true;
+        transform.forward = Vector3.forward;
+        frenado.Frenar();
         MiVisualizacion.CambiarAConduccion();
-        EstAct = Player.Estados.EnConduccion;
+        EstAct = Estados.EnConduccion;
+        frenado.RestaurarVel();
+        ControlDire.Habilitado = false;
+        transform.forward = Vector3.forward;
     }
 
     public void CambiarADescarga()
@@ -148,5 +160,11 @@ public class Player : MonoBehaviour
 
         transform.position = posicion;
         transform.forward = direccion;
+    }
+
+    public void EmpezarCarrera()
+    {
+        frenado.RestaurarVel();
+        ControlDire.Habilitado = true;
     }
 }

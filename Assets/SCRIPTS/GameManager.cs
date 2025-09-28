@@ -3,17 +3,29 @@ using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using entityStates;
+using GameManagerStates;
 using Systems;
 using UnityEngine.AddressableAssets;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instancia;
 
+    public AbstractState<GameManager> state;
+
+    private StateCalibracion stateCalibracion = new();
+    public StateCarrera stateCarrera = new();
+    public StateFinDelJuego StateFinDelJuego = new();
+
     public float TiempoDeJuego = 60;
 
-    [SerializeField] private AssetReference Obstaculos;
-    private GameObject op;
+    public AssetReference Obstaculos;
+    public AssetReference Pista;
+    public GameObject CanvasJuegoGO;
+    [HideInInspector] public GameObject ObstaculosGO;
+    [HideInInspector] public GameObject PistaGO;
 
     public enum EstadoJuego
     {
@@ -32,24 +44,14 @@ public class GameManager : MonoBehaviour
 
     bool PosSeteada = false;
 
-    bool ConteoRedresivo = true;
-    public Rect ConteoPosEsc;
+    public bool ConteoRedresivo = true;
     public float ConteoParaInicion = 3;
-    public GUISkin GS_ConteoInicio;
-
-    public Rect TiempoGUI = new Rect();
-    public GUISkin GS_TiempoGUI;
-    Rect R = new Rect();
 
     public float TiempEspMuestraPts = 3;
 
     //posiciones de los camiones dependientes del lado que les toco en la pantalla
     //la pos 0 es para la izquierda y la 1 para la derecha
     public Vector3[] PosCamionesCarrera = new Vector3[2];
-
-    //posiciones de los camiones para el tutorial
-    public Vector3 PosCamion1Tuto = Vector3.zero;
-    public Vector3 PosCamion2Tuto = Vector3.zero;
 
     //listas de GO que activa y desactiva por sub-escena
     //escena de calibracion
@@ -62,22 +64,19 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] ObjsTuto2;
 
-    //la pista de carreras
-    public GameObject[] ObjsCarrera;
-
-    IList<int> users;
-    private GameObject ObstaculosGO;
-
     //--------------------------------------------------------//
 
     private void Awake()
     {
         Instancia = this;
+        CanvasJuegoGO?.SetActive(false);
     }
 
     private void Start()
     {
-        IniciarCalibracion();
+        state = stateCalibracion;
+        state.Cambiar(this);
+        //IniciarCalibracion();
     }
 
     private void Update()
@@ -95,7 +94,9 @@ public class GameManager : MonoBehaviour
             Application.Quit();
         }
 
+        state.Update();
 
+/*
         switch (EstAct)
         {
             case EstadoJuego.Calibrando:
@@ -163,14 +164,7 @@ public class GameManager : MonoBehaviour
                     }
                 }
                 else
-                {
-                    //baja el tiempo del juego
                     TiempoDeJuego -= Time.deltaTime;
-                    if (TiempoDeJuego <= 0)
-                    {
-                        //termina el juego
-                    }
-                }
 
                 break;
 
@@ -179,46 +173,15 @@ public class GameManager : MonoBehaviour
 
                 TiempEspMuestraPts -= Time.deltaTime;
                 if (TiempEspMuestraPts <= 0)
-                    SceneOrganizer.Instance.LoadEndGameScene();
-
-                break;
-        }
-    }
-
-    private void OnGUI()
-    {
-        switch (EstAct)
-        {
-            case EstadoJuego.Jugando:
-                if (ConteoRedresivo)
                 {
-                    GUI.skin = GS_ConteoInicio;
-
-                    R.x = ConteoPosEsc.x * Screen.width / 100;
-                    R.y = ConteoPosEsc.y * Screen.height / 100;
-                    R.width = ConteoPosEsc.width * Screen.width / 100;
-                    R.height = ConteoPosEsc.height * Screen.height / 100;
-
-                    if (ConteoParaInicion > 1)
-                    {
-                        GUI.Box(R, ConteoParaInicion.ToString("0"));
-                    }
-                    else
-                    {
-                        GUI.Box(R, "GO");
-                    }
+                    Addressables.ReleaseInstance(ObstaculosGO);
+                    Addressables.ReleaseInstance(PistaGO);
+                    SceneOrganizer.Instance.LoadEndGameScene();
                 }
 
-                GUI.skin = GS_TiempoGUI;
-                R.x = TiempoGUI.x * Screen.width / 100;
-                R.y = TiempoGUI.y * Screen.height / 100;
-                R.width = TiempoGUI.width * Screen.width / 100;
-                R.height = TiempoGUI.height * Screen.height / 100;
-                GUI.Box(R, TiempoDeJuego.ToString("00"));
                 break;
         }
-
-        GUI.skin = null;
+        */
     }
 
     //----------------------------------------------------------//
@@ -242,7 +205,7 @@ public class GameManager : MonoBehaviour
         Player2.CambiarACalibracion();
     }
 
-    private void EmpezarCarrera()
+    public void EmpezarCarrera()
     {
         Player1.GetComponent<Frenado>().RestaurarVel();
         Player1.GetComponent<ControlDireccion>().Habilitado = true;
@@ -251,10 +214,8 @@ public class GameManager : MonoBehaviour
         Player2.GetComponent<ControlDireccion>().Habilitado = true;
     }
 
-    private void FinalizarCarrera()
+    public void FinalizarCarrera()
     {
-        Addressables.ReleaseInstance(ObstaculosGO);
-
         EstAct = EstadoJuego.Finalizado;
 
         TiempoDeJuego = 0;
@@ -292,7 +253,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private void SetPosicion(PlayerInfo pjInf)
+    public void SetPosicion(PlayerInfo pjInf)
     {
         pjInf.PJ.GetComponent<Visualizacion>().SetLado(pjInf.LadoAct);
         //en este momento, solo la primera vez, deberia setear la otra camara asi no se superponen
@@ -319,10 +280,19 @@ public class GameManager : MonoBehaviour
     [Obsolete("Obsolete")]
     private async void CambiarACarrera()
     {
-        var handle = Addressables.InstantiateAsync(Obstaculos);
+        var handle = Addressables.InstantiateAsync(Pista);
+
+        PistaGO = await handle.Task;
+        PistaGO.transform.position = new Vector3(-17.88721f, -30.0f, 5202.328f);
+
+        handle = Addressables.InstantiateAsync(Obstaculos);
 
         ObstaculosGO = await handle.Task;
         ObstaculosGO.transform.position = new Vector3(-19.49809f, 5.903175f, 5392.36f);
+
+        SceneManager.MoveGameObjectToScene(ObstaculosGO, gameObject.scene);
+
+        SceneManager.MoveGameObjectToScene(PistaGO, gameObject.scene);
 
         for (int i = 0; i < ObjsTuto1.Length; i++)
         {
@@ -357,23 +327,9 @@ public class GameManager : MonoBehaviour
             Player2.gameObject.transform.position = PosCamionesCarrera[0];
         }
 
-        Player1.transform.forward = Vector3.forward;
-        Player1.GetComponent<Frenado>().Frenar();
         Player1.CambiarAConduccion();
 
-        Player2.transform.forward = Vector3.forward;
-        Player2.GetComponent<Frenado>().Frenar();
         Player2.CambiarAConduccion();
-
-        //los deja andando
-        Player1.GetComponent<Frenado>().RestaurarVel();
-        Player2.GetComponent<Frenado>().RestaurarVel();
-        //cancela la direccion
-        Player1.GetComponent<ControlDireccion>().Habilitado = false;
-        Player2.GetComponent<ControlDireccion>().Habilitado = false;
-        //les de direccion
-        Player1.transform.forward = Vector3.forward;
-        Player2.transform.forward = Vector3.forward;
 
         EstAct = EstadoJuego.Jugando;
     }
@@ -388,11 +344,7 @@ public class GameManager : MonoBehaviour
         {
             PlayerInfo2.FinTuto2 = true;
         }
-
-        if (PlayerInfo1.FinTuto2 && PlayerInfo2.FinTuto2)
-        {
-            CambiarACarrera();
-        }
+        
     }
 
     public void FinCalibracion(int playerID)
@@ -405,10 +357,6 @@ public class GameManager : MonoBehaviour
         {
             PlayerInfo2.FinTuto1 = true;
         }
-
-        if (PlayerInfo1.PJ && PlayerInfo2.PJ)
-            if (PlayerInfo1.FinTuto1 && PlayerInfo2.FinTuto1)
-                CambiarACarrera();
     }
 
 
