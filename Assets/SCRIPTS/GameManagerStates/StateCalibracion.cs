@@ -13,15 +13,26 @@ namespace GameManagerStates
                 entity.SetPosicion(entity.PlayerInfo1);
             }
 
-            if (entity.PlayerInfo2 != null && !entity.PlayerInfo2.PJ && Input.GetKeyDown(KeyCode.UpArrow))
+            if (GameplaySettingsManager.Instance.IsMultiplayer)
             {
-                entity.PlayerInfo2 = new GameManager.PlayerInfo(1, entity.Player2);
-                entity.PlayerInfo2.LadoAct = Visualizacion.Lado.Der;
-                entity.SetPosicion(entity.PlayerInfo2);
+                if (entity.PlayerInfo2 != null && !entity.PlayerInfo2.PJ && Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    entity.PlayerInfo2 = new GameManager.PlayerInfo(1, entity.Player2);
+                    entity.PlayerInfo2.LadoAct = Visualizacion.Lado.Der;
+                    entity.SetPosicion(entity.PlayerInfo2);
+                }
             }
 
-            if (entity.PlayerInfo1.PJ && entity.PlayerInfo2.PJ)
-                Finalizar();
+            if (GameplaySettingsManager.Instance.IsMultiplayer)
+            {
+                if (entity.PlayerInfo1.PJ && entity.PlayerInfo2.PJ)
+                    Finalizar();
+            }
+            else
+            {
+                if (entity.PlayerInfo1.PJ)
+                    Finalizar();
+            }
         }
 
         public override void Cambiar(GameManager entity)
@@ -35,18 +46,15 @@ namespace GameManagerStates
             for (int i = 0; i < entity.ObjsCalibracion1.Length; i++)
             {
                 entity.ObjsCalibracion1[i].SetActiveRecursively(true);
-                entity.ObjsCalibracion2[i].SetActiveRecursively(true);
-            }
 
-            for (int i = 0; i < entity.ObjsTuto2.Length; i++)
-            {
-                entity.ObjsTuto2[i].SetActiveRecursively(false);
-                entity.ObjsTuto1[i].SetActiveRecursively(false);
+                if (GameplaySettingsManager.Instance.IsMultiplayer)
+                    entity.ObjsCalibracion2[i].SetActiveRecursively(true);
             }
-
 
             entity.Player1.CambiarACalibracion();
-            entity.Player2.CambiarACalibracion();
+
+            if (GameplaySettingsManager.Instance.IsMultiplayer)
+                entity.Player2.CambiarACalibracion();
         }
 
         public override void Finalizar()

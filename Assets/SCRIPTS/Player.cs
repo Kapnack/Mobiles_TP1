@@ -3,28 +3,19 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
-    public int Dinero = 0;
+    [HideInInspector]public int Dinero = 0;
     public int IdPlayer = 0;
 
-    public Bolsa[] Bolasas;
-    public int CantBolsAct = 0;
+    [HideInInspector] public Bolsa[] Bolasas;
+    [HideInInspector] public int CantBolsAct = 0;
 
-    public enum Estados
-    {
-        EnDescarga,
-        EnConduccion,
-        EnCalibracion,
-        EnTutorial
-    }
-
-    public Estados EstAct = Estados.EnConduccion;
-
-    public ControladorDeDescarga ContrDesc;
-    public ContrCalibracion ContrCalib;
-    public ContrTutorial ContrTuto;
-    public ControlDireccion ControlDire;
+   [HideInInspector] public ControladorDeDescarga ContrDesc;
+   [HideInInspector] public ContrCalibracion ContrCalib;
+   [HideInInspector] public ControlDireccion ControlDire;
     Visualizacion MiVisualizacion;
 
+    public GameObject CanvasDescarga;
+    
     private Frenado frenado;
     private Respawn respawn;
 
@@ -48,6 +39,8 @@ public class Player : MonoBehaviour
         ControlDire = GetComponent<ControlDireccion>();
 
         rb.useGravity = false;
+        
+        CanvasDescarga?.SetActive(false);
     }
 
     private void Start()
@@ -101,23 +94,15 @@ public class Player : MonoBehaviour
     public void CambiarACalibracion()
     {
         MiVisualizacion.CambiarACalibracion();
-        EstAct = Player.Estados.EnCalibracion;
-    }
-
-    public void CambiarATutorial()
-    {
-        MiVisualizacion.CambiarATutorial();
-        EstAct = Player.Estados.EnTutorial;
-        ContrTuto.Iniciar();
     }
 
     public void CambiarAConduccion()
     {
+        CanvasDescarga?.SetActive(false);
         rb.useGravity = true;
         transform.forward = Vector3.forward;
         frenado.Frenar();
         MiVisualizacion.CambiarAConduccion();
-        EstAct = Estados.EnConduccion;
         frenado.RestaurarVel();
         ControlDire.Habilitado = false;
         transform.forward = Vector3.forward;
@@ -125,8 +110,8 @@ public class Player : MonoBehaviour
 
     public void CambiarADescarga()
     {
+        CanvasDescarga?.SetActive(true);
         MiVisualizacion.CambiarADescarga();
-        EstAct = Estados.EnDescarga;
     }
 
     public void SacarBolasa()
@@ -146,7 +131,7 @@ public class Player : MonoBehaviour
         VaciarInv();
         frenado.RestaurarVel();
         respawn.Respawnear(posicion, direccion);
-
+        ControlDire.Habilitado = true;
         col.enabled = true;
 
         rb.useGravity = true;

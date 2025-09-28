@@ -12,8 +12,6 @@ public class ContrTutorial : MonoBehaviour
 	public void Start () 
 	{
 		GM = GameObject.Find("GameMgr").GetComponent<GameManager>();
-		
-		Pj.ContrTuto = this;
 	}
 
 	private void OnTriggerEnter(Collider other)

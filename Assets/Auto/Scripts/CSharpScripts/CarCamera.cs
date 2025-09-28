@@ -5,14 +5,12 @@ public class CarCamera : MonoBehaviour
 {
 	public Transform target = null;
 	public float height = 1f;
-	public float positionDamping = 3f;
 	public float velocityDamping = 3f;
-	public float distance = 4f;
 	public LayerMask ignoreLayers = -1;
 	
 	public float LejaniaZ = 1;
 
-	private RaycastHit hit = new RaycastHit();
+	private RaycastHit hit;
 
 	private Vector3 prevVelocity = Vector3.zero;
 	private LayerMask raycastLayers = -1;
@@ -22,6 +20,9 @@ public class CarCamera : MonoBehaviour
 	void Start()
 	{
 		raycastLayers = ~ignoreLayers;
+		
+		if (!target.gameObject.activeSelf)
+			gameObject.SetActive(false);
 	}
 
 	void FixedUpdate()

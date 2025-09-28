@@ -34,7 +34,7 @@ public class Deposito2 : MonoBehaviour
 	
 	public void Soltar()
 	{
-		PjActual.SalirDelDeposito(transform.position, transform.forward);
+		PjActual.SalirDelDeposito(transform.position + Vector3.up, transform.forward);
 		
 		Physics.IgnoreLayerCollision(8,9,false);
 		
@@ -48,7 +48,7 @@ public class Deposito2 : MonoBehaviour
 		{
 			PjActual = pj;
 
-			pj.EntrarAlDeposito(transform.position, transform.forward);
+			pj.EntrarAlDeposito(transform.position + Vector3.up, transform.forward);
 			
 			Vacio = false;
 			
