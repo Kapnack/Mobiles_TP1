@@ -15,7 +15,7 @@ public class GameplaySettingsManager : Singleton<GameplaySettingsManager>
     protected override void Awake()
     {
         base.Awake();
-        canvas.gameObject.SetActive(false);
+        DesactivarCanvas();
     }
     
     public void ModoDeUnJugador()

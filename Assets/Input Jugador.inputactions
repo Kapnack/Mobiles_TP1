@@ -1,0 +1,103 @@
+{
+    "version": 1,
+    "name": "Input Jugador",
+    "maps": [
+        {
+            "name": "Jugador1",
+            "id": "d81b8962-0c78-4872-89ee-5de267ba3c88",
+            "actions": [
+                {
+                    "name": "Izquierda",
+                    "type": "Button",
+                    "id": "ddc9db21-1f1a-48ff-a9a4-7cf769ecc5de",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Derecha",
+                    "type": "Button",
+                    "id": "6de6f0ff-423c-4325-a38b-f85ba7100f8d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8716782e-a3a5-4d63-8bfd-61b93511b7c3",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Izquierda",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "25cc37f7-017e-48b3-9da8-00086c63a3bc",
+                    "path": "<Keyboard>/anyKey",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Derecha",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Jugador2",
+            "id": "9532c926-af74-41e9-aef0-de6cc758b301",
+            "actions": [
+                {
+                    "name": "Izquirda",
+                    "type": "Button",
+                    "id": "0c8352b0-e316-4c29-aa8f-c3122249e7af",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Derecha",
+                    "type": "Button",
+                    "id": "43cf6697-67c8-45a0-9ab4-ddaf475c6cbd",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7bb0f89b-1c40-4076-a7ab-4f00998b137a",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Izquirda",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "78c5d570-f5fd-4600-aed4-603f47737fa3",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Derecha",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
