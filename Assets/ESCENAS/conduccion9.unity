@@ -30149,6 +30149,12 @@ PrefabInstance:
       propertyPath: InputAct
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114475702172432364, guid: b81b1a58a0f14c9439cbdd014e695f71,
+        type: 3}
+      propertyPath: _inputSystem
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: f8e6547c79a704c479138daf02610afa,
+        type: 3}
     - target: {fileID: 114643806136207610, guid: b81b1a58a0f14c9439cbdd014e695f71,
         type: 3}
       propertyPath: IdPlayer
@@ -30365,6 +30371,27 @@ PrefabInstance:
         type: 3}
       propertyPath: InputAct
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114475702172432364, guid: b81b1a58a0f14c9439cbdd014e695f71,
+        type: 3}
+      propertyPath: _inputField
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114475702172432364, guid: b81b1a58a0f14c9439cbdd014e695f71,
+        type: 3}
+      propertyPath: _inputSystem
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: f8e6547c79a704c479138daf02610afa,
+        type: 3}
+    - target: {fileID: 114475702172432364, guid: b81b1a58a0f14c9439cbdd014e695f71,
+        type: 3}
+      propertyPath: _inputField.m_Id
+      value: 05a83d66-3b04-491a-82a4-cacbae0dcc91
+      objectReference: {fileID: 0}
+    - target: {fileID: 114475702172432364, guid: b81b1a58a0f14c9439cbdd014e695f71,
+        type: 3}
+      propertyPath: _inputField.m_Name
+      value: Input Field
       objectReference: {fileID: 0}
     - target: {fileID: 114643806136207610, guid: b81b1a58a0f14c9439cbdd014e695f71,
         type: 3}

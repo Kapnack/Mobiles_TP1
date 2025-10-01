@@ -7,46 +7,48 @@
             "id": "d81b8962-0c78-4872-89ee-5de267ba3c88",
             "actions": [
                 {
-                    "name": "Izquierda",
-                    "type": "Button",
-                    "id": "ddc9db21-1f1a-48ff-a9a4-7cf769ecc5de",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Derecha",
-                    "type": "Button",
+                    "name": "Movimiento",
+                    "type": "Value",
                     "id": "6de6f0ff-423c-4325-a38b-f85ba7100f8d",
-                    "expectedControlType": "",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
                 {
-                    "name": "",
-                    "id": "8716782e-a3a5-4d63-8bfd-61b93511b7c3",
+                    "name": "1D Axis",
+                    "id": "606002b2-918c-4e43-aff1-8a57bd2e2e24",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movimiento",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "6206d496-1f83-4648-b015-44ef3e96651b",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Izquierda",
+                    "action": "Movimiento",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "25cc37f7-017e-48b3-9da8-00086c63a3bc",
-                    "path": "<Keyboard>/anyKey",
+                    "name": "positive",
+                    "id": "35cd3897-f3e3-45fd-8fee-19dc2cb0a18b",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Derecha",
+                    "action": "Movimiento",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 }
             ]
         },
@@ -55,18 +57,9 @@
             "id": "9532c926-af74-41e9-aef0-de6cc758b301",
             "actions": [
                 {
-                    "name": "Izquirda",
+                    "name": "Movimiento",
                     "type": "Button",
-                    "id": "0c8352b0-e316-4c29-aa8f-c3122249e7af",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Derecha",
-                    "type": "Button",
-                    "id": "43cf6697-67c8-45a0-9ab4-ddaf475c6cbd",
+                    "id": "f6fd0230-eb02-4e78-88d1-acf89caaff04",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -75,26 +68,37 @@
             ],
             "bindings": [
                 {
-                    "name": "",
-                    "id": "7bb0f89b-1c40-4076-a7ab-4f00998b137a",
+                    "name": "1D Axis",
+                    "id": "d5c6a885-fdba-4861-a69c-cfa796924160",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movimiento",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "f684c5ec-876a-43a7-b6be-76a0d3b57a00",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Izquirda",
+                    "action": "Movimiento",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "78c5d570-f5fd-4600-aed4-603f47737fa3",
+                    "name": "positive",
+                    "id": "0e62f75f-8f14-48a5-86ef-ab86de1289a3",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Derecha",
+                    "action": "Movimiento",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 }
             ]
         }
