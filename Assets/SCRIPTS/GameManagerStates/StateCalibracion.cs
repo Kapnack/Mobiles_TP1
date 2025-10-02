@@ -1,9 +1,15 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace GameManagerStates
 {
     public class StateCalibracion : AbstractState<GameManager>
     {
+        public InputActionAsset _inputSystem;
+        private InputActionMap _inputField;
+        private InputAction inputMovimiento;
+        
+        
         public override void Update()
         {
             if (entity.PlayerInfo1 != null && !entity.PlayerInfo1.PJ && Input.GetKeyDown(KeyCode.W))
@@ -34,7 +40,6 @@ namespace GameManagerStates
                     Finalizar();
             }
         }
-
         public override void Cambiar(GameManager entity)
         {
             this.entity = entity;

@@ -4,6 +4,7 @@ using entityStates;
 using GameManagerStates;
 using Systems;
 using UnityEngine.AddressableAssets;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -46,20 +47,30 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] ObjsCalibracion2;
 
-    //escena de tutorial
-    public GameObject[] ObjsTuto1;
-
-    public GameObject[] ObjsTuto2;
+    [SerializeField] private InputActionAsset actionAsset;
+    [SerializeField] private InputActionReference cerrarJuego;
 
     //--------------------------------------------------------//
 
     private void Awake()
     {
+        if (actionAsset != null)
+            stateCalibracion._inputSystem = actionAsset;
+
+        if (cerrarJuego != null)
+            cerrarJuego.action.started += CerrarJuego;
+
         Instancia = this;
         CanvasJuegoGO?.SetActive(false);
 
         if (!GameplaySettingsManager.Instance.IsMultiplayer)
             Player2.gameObject.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        if (cerrarJuego != null)
+            cerrarJuego.action.started -= CerrarJuego;
     }
 
     private void Start()
@@ -68,22 +79,15 @@ public class GameManager : MonoBehaviour
         state.Cambiar(this);
     }
 
-    private void Update()
+    private void Update() => state.Update();
+
+    private void CerrarJuego(InputAction.CallbackContext _)
     {
-        //REINICIAR
-        if (Input.GetKey(KeyCode.Mouse1) &&
-            Input.GetKey(KeyCode.Keypad0))
-        {
-            SceneOrganizer.Instance.LoadGameplayScene();
-        }
-
-        //CIERRA LA APLICACION
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
-
-        state.Update();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 
     public void SetPosicion(PlayerInfo pjInf)
@@ -115,34 +119,11 @@ public class GameManager : MonoBehaviour
 
     public void FinTutorial(int playerID)
     {
-        if (playerID == 0)
-        {
-            PlayerInfo1.FinTuto2 = true;
-        }
-        else if (playerID == 1)
-        {
-            if (!GameplaySettingsManager.Instance.IsMultiplayer)
-                return;
-
-            PlayerInfo2.FinTuto2 = true;
-        }
     }
 
     public void FinCalibracion(int playerID)
     {
-        if (playerID == 0)
-        {
-            PlayerInfo1.FinTuto1 = true;
-        }
-        else if (playerID == 1)
-        {
-            if (!GameplaySettingsManager.Instance.IsMultiplayer)
-                return;
-
-            PlayerInfo2.FinTuto1 = true;
-        }
     }
-
 
     [Serializable]
     public class PlayerInfo
@@ -151,9 +132,6 @@ public class GameManager : MonoBehaviour
         {
             PJ = pj;
         }
-
-        public bool FinTuto1 = false;
-        public bool FinTuto2 = false;
 
         public Visualizacion.Lado LadoAct;
 

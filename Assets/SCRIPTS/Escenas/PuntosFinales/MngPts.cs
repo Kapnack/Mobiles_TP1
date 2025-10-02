@@ -1,39 +1,74 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using Systems;
+using TMPro;
+using UnityEngine.InputSystem;
 
 public class MngPts : MonoBehaviour
 {
     Rect R;
 
-    public float TiempEmpAnims = 2.5f;
     float Tempo = 0;
 
     int IndexGanador = 0;
 
-    public Vector2[] DineroPos;
-    public Vector2 DineroEsc;
-    public GUISkin GS_Dinero;
-
-    public Vector2 GanadorPos;
-    public Vector2 GanadorEsc;
-    public Texture2D[] Ganadores;
-    public GUISkin GS_Ganador;
-
-    public GameObject Fondo;
+    [SerializeField] private InputActionReference cargarNivel;
+    [SerializeField] private InputActionReference salirDelJuego;
 
     public float TiempEspReiniciar = 10;
 
-
-    public float TiempParpadeo = 0.7f;
     float TempoParpadeo = 0;
     bool PrimerImaParp = true;
 
-    public bool ActivadoAnims = false;
+    [SerializeField] private GameObject puntajeJugador1;
+    [SerializeField] private GameObject puntajeJugador2;
 
-    Visualizacion Viz = new Visualizacion();
+    [SerializeField] private TMP_Text puntajeJugador1Texto;
+    private string puntajeJugador1Formato;
 
-    //---------------------------------//
+    [SerializeField] private TMP_Text puntajeJugador2Texto;
+    private string puntajeJugador2Formato;
+
+    private void Awake()
+    {
+        if (cargarNivel != null)
+            cargarNivel.action.started += CargarNivel;
+
+        if (salirDelJuego != null)
+            salirDelJuego.action.started += SalirDelJuegoConInput;
+
+        puntajeJugador1Formato = puntajeJugador1Texto.text;
+        puntajeJugador1Texto.text = String.Format(puntajeJugador1Formato, DatosPartida.PtsPerdedor);
+
+        puntajeJugador2Formato = puntajeJugador2Texto.text;
+        puntajeJugador2Texto.text = String.Format(puntajeJugador2Formato, DatosPartida.PtsGanador);
+    }
+
+    private void OnDestroy()
+    {
+        if (cargarNivel != null)
+            cargarNivel.action.started -= CargarNivel;
+
+        if (salirDelJuego != null)
+            salirDelJuego.action.started -= SalirDelJuegoConInput;
+    }
+
+    private void CargarNivel(InputAction.CallbackContext _) => SceneOrganizer.Instance.LoadGameplayScene();
+
+    private void SalirDelJuegoConInput(InputAction.CallbackContext _)
+    {
+        SalirPrograma();
+    }
+
+    public void SalirPrograma()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
 
     private void Start()
     {
@@ -42,141 +77,27 @@ public class MngPts : MonoBehaviour
 
     private void Update()
     {
-        //PARA JUGAR
-        if (Input.GetKeyDown(KeyCode.KeypadEnter) ||
-            Input.GetKeyDown(KeyCode.Return) ||
-            Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            SceneOrganizer.Instance.LoadGameplayScene();
-        }
-
-        //CIERRA LA APLICACION
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
-
-
         TiempEspReiniciar -= Time.deltaTime;
         if (TiempEspReiniciar <= 0)
         {
             SceneOrganizer.Instance.LoadGameplayScene();
         }
-
-
-        if (ActivadoAnims)
-        {
-            TempoParpadeo += Time.deltaTime;
-
-            if (TempoParpadeo >= TiempParpadeo)
-            {
-                TempoParpadeo = 0;
-
-                if (PrimerImaParp)
-                    PrimerImaParp = false;
-                else
-                {
-                    TempoParpadeo += 0.1f;
-                    PrimerImaParp = true;
-                }
-            }
-        }
-        else
-        {
-            Tempo += Time.deltaTime;
-            if (Tempo >= TiempEmpAnims)
-            {
-                Tempo = 0;
-                ActivadoAnims = true;
-            }
-        }
     }
-
-    private void OnGUI()
-    {
-        if (ActivadoAnims)
-        {
-            SetDinero();
-            SetCartelGanador();
-        }
-
-        GUI.skin = null;
-    }
-
-    //---------------------------------//
 
     private void SetGanador()
     {
-        switch (DatosPartida.LadoGanadaor)
-        {
-            case DatosPartida.Lados.Der:
-
-                GS_Ganador.box.normal.background = Ganadores[1];
-
-                break;
-
-            case DatosPartida.Lados.Izq:
-
-                GS_Ganador.box.normal.background = Ganadores[0];
-
-                break;
-        }
+        StartCoroutine(GanadorTexto(DatosPartida.LadoGanadaor == DatosPartida.Lados.Der
+            ? puntajeJugador1
+            : puntajeJugador2));
     }
 
-    private void SetDinero()
+    private IEnumerator GanadorTexto(GameObject ganadorTexto)
     {
-        GUI.skin = GS_Dinero;
-
-        R.width = DineroEsc.x * Screen.width / 100;
-        R.height = DineroEsc.y * Screen.height / 100;
-
-
-        //IZQUIERDA
-        R.x = DineroPos[0].x * Screen.width / 100;
-        R.y = DineroPos[0].y * Screen.height / 100;
-
-        if (DatosPartida.LadoGanadaor == DatosPartida.Lados.Izq) //izquierda
+        while (true)
         {
-            if (!PrimerImaParp) //para que parpadee
-                GUI.Box(R, "$" + Viz.PrepararNumeros(DatosPartida.PtsGanador));
+            yield return new WaitForSeconds(0.5f);
+
+            ganadorTexto.SetActive(!ganadorTexto.activeSelf);
         }
-        else
-        {
-            GUI.Box(R, "$" + Viz.PrepararNumeros(DatosPartida.PtsPerdedor));
-        }
-
-
-        //DERECHA
-        R.x = DineroPos[1].x * Screen.width / 100;
-        R.y = DineroPos[1].y * Screen.height / 100;
-
-        if (DatosPartida.LadoGanadaor == DatosPartida.Lados.Der) //derecha
-        {
-            if (!PrimerImaParp) //para que parpadee
-                GUI.Box(R, "$" + Viz.PrepararNumeros(DatosPartida.PtsGanador));
-        }
-        else
-        {
-            GUI.Box(R, "$" + Viz.PrepararNumeros(DatosPartida.PtsPerdedor));
-        }
-    }
-
-    private void SetCartelGanador()
-    {
-        GUI.skin = GS_Ganador;
-
-        R.width = GanadorEsc.x * Screen.width / 100;
-        R.height = GanadorEsc.y * Screen.height / 100;
-        R.x = GanadorPos.x * Screen.width / 100;
-        R.y = GanadorPos.y * Screen.height / 100;
-
-        //if(PrimerImaParp)//para que parpadee
-        GUI.Box(R, "");
-    }
-
-    public void DesaparecerGUI()
-    {
-        ActivadoAnims = false;
-        Tempo = -100;
     }
 }

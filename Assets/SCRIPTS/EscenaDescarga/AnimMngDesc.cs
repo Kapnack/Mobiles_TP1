@@ -23,11 +23,6 @@ public class AnimMngDesc : MonoBehaviour
 	
 	private void Update () 
 	{
-		if(Input.GetKeyDown(KeyCode.Z))
-			Entrar();
-		if(Input.GetKeyDown(KeyCode.X))
-			Salir();
-		
 		switch(AnimAct)
 		{
 		case AnimEnCurso.Entrada:

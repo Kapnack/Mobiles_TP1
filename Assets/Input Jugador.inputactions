@@ -14,6 +14,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Abajo",
+                    "type": "Button",
+                    "id": "a087c056-8d10-4b66-a7e9-c7ed1db0b937",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -49,6 +58,17 @@
                     "action": "Movimiento",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "baba7188-8c96-4bfb-afbe-ce92ee96bb65",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Abajo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -60,6 +80,15 @@
                     "name": "Movimiento",
                     "type": "Button",
                     "id": "f6fd0230-eb02-4e78-88d1-acf89caaff04",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Abajo",
+                    "type": "Button",
+                    "id": "db78ef01-1230-4056-96f9-4d0da8830633",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -99,6 +128,87 @@
                     "action": "Movimiento",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "29f8f820-45f4-4995-bbb0-47c47ce29cd4",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Abajo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "ManagerDelJuego",
+            "id": "2e83ac80-a8ae-4d07-a5cc-159ac342cb76",
+            "actions": [
+                {
+                    "name": "SalirDelJuego",
+                    "type": "Button",
+                    "id": "e2f5a1a8-3646-47b8-87c4-799ac2904336",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CargarNivel",
+                    "type": "Button",
+                    "id": "23ec1d4a-7aec-4b13-b680-fff288c68984",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "261e5703-8923-404a-95a5-6807a6ed4021",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SalirDelJuego",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c7ee94cf-0803-4f08-8787-bb58cfc79a52",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CargarNivel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "22929288-0680-42d9-9f16-1a52dbf35394",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CargarNivel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b5244d51-49be-46a2-b6d4-e971568a1c22",
+                    "path": "<Keyboard>/backspace",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CargarNivel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

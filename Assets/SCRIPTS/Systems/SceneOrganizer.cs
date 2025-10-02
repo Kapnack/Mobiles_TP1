@@ -53,7 +53,7 @@ namespace Systems
             
             try
             {
-                await _sceneLoader.UnloadAll();
+                 _sceneLoader.UnloadAll();
                 await _sceneLoader.LoadSceneAsync(newSceneRef);
             }
             catch (Exception e)

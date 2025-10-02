@@ -21,7 +21,7 @@ public class Visualizacion : MonoBehaviour
     public Camera CamCalibracion;
     public Camera CamConduccion;
     public Camera CamDescarga;
-    
+
     int EnCurso = -1;
 
     //NUMERO DEL JUGADOR
@@ -98,7 +98,8 @@ public class Visualizacion : MonoBehaviour
         CamConduccion.rect = r;
         CamDescarga.rect = r;
 
-        techoRenderer.material.mainTexture = LadoAct == Lado.Izq ? TextNum1 : TextNum2;
+        if (techoRenderer)
+            techoRenderer.material.mainTexture = LadoAct == Lado.Izq ? TextNum1 : TextNum2;
     }
 
     public string PrepararNumeros(int dinero)

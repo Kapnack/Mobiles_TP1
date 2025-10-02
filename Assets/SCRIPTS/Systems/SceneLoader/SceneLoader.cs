@@ -36,7 +36,7 @@ namespace Systems.SceneLoader
 
         private readonly List<Scene> _activeScenes = new();
         private readonly List<SceneLoadingInfo> _loadingScenes = new();
-        
+
         private void Awake()
         {
 #if UNITY_EDITOR
@@ -92,14 +92,12 @@ namespace Systems.SceneLoader
             {
                 Debug.LogWarning($"Not Valid SceneRef. Cause SceneIndex: {sceneRef.Name} is < 0");
                 return;
-                
             }
 
             if (IsSceneLoaded(sceneRef))
             {
                 Debug.LogWarning($"Scene: {sceneRef.Name} is already loaded.");
                 return;
-                
             }
 
             if (IsSceneLoading(sceneRef))
@@ -108,7 +106,7 @@ namespace Systems.SceneLoader
                 return;
             }
 
-            await StartLoading(sceneRef, mode);
+            StartLoading(sceneRef, mode);
         }
 
         /// <inheritdoc/>
@@ -120,7 +118,7 @@ namespace Systems.SceneLoader
                 activeScenesTask.Add(LoadSceneAsync(t));
 
             await Task.WhenAll(activeScenesTask);
-            
+
             _loadingScenes.Clear();
         }
 

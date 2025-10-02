@@ -9,6 +9,8 @@ public class GameplaySettingsManager : Singleton<GameplaySettingsManager>
     [SerializeField] private Button ButtonDosJugadores;
     [SerializeField] private TMP_Dropdown DificultadOpciones;
     [SerializeField] private Canvas canvas;
+    
+    public bool isFirstLoad = true;
     public int DificultadOpcionActual => DificultadOpciones.value;
     public bool IsMultiplayer;
 

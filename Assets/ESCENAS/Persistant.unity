@@ -930,6 +930,7 @@ MonoBehaviour:
   ButtonDosJugadores: {fileID: 2045979661}
   DificultadOpciones: {fileID: 1578672951}
   canvas: {fileID: 2070448707}
+  isFirstLoad: 1
   IsMultiplayer: 0
 --- !u!4 &464297042
 Transform:
