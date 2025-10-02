@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class Estadisticas : MonoBehaviour
 {
+    [SerializeField] private bool UnSoloJugador;
     private int CantBolsasMax = 3;
-    
+
     private float CooldownFlash = 0.2f;
-    
+
     [SerializeField] private Player Camion;
 
     [SerializeField] private List<GameObject> ProgresoBolsas;
@@ -21,6 +22,9 @@ public class Estadisticas : MonoBehaviour
 
     private void Awake()
     {
+        if (UnSoloJugador && GameplaySettingsManager.Instance.IsMultiplayer)
+            Destroy(gameObject);
+
         if (Camion == null)
         {
             Debug.LogWarning("Falta el Player en " + gameObject.name);
@@ -71,7 +75,7 @@ public class Estadisticas : MonoBehaviour
             FinalBolsas.SetActive(!FinalBolsas.activeSelf);
             yield return new WaitForSeconds(CooldownFlash);
         }
-        
+
         FinalBolsas.SetActive(false);
 
         flashCorrutina = null;

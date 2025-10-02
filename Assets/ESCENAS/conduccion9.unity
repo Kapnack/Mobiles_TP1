@@ -30161,6 +30161,16 @@ PrefabInstance:
       propertyPath: CanvasDescarga
       value: 
       objectReference: {fileID: 1531864945}
+    - target: {fileID: 114643806136207610, guid: b81b1a58a0f14c9439cbdd014e695f71,
+        type: 3}
+      propertyPath: CanvasUnJugador
+      value: 
+      objectReference: {fileID: 1645623964}
+    - target: {fileID: 114643806136207610, guid: b81b1a58a0f14c9439cbdd014e695f71,
+        type: 3}
+      propertyPath: CanvasDosJugadores
+      value: 
+      objectReference: {fileID: 1531864945}
     - target: {fileID: 114911345111112572, guid: b81b1a58a0f14c9439cbdd014e695f71,
         type: 3}
       propertyPath: CamDescarga
@@ -30392,6 +30402,16 @@ PrefabInstance:
     - target: {fileID: 114643806136207610, guid: b81b1a58a0f14c9439cbdd014e695f71,
         type: 3}
       propertyPath: CanvasDescarga
+      value: 
+      objectReference: {fileID: 149719244}
+    - target: {fileID: 114643806136207610, guid: b81b1a58a0f14c9439cbdd014e695f71,
+        type: 3}
+      propertyPath: CanvasUnJugador
+      value: 
+      objectReference: {fileID: 1645623964}
+    - target: {fileID: 114643806136207610, guid: b81b1a58a0f14c9439cbdd014e695f71,
+        type: 3}
+      propertyPath: CanvasDosJugadores
       value: 
       objectReference: {fileID: 149719244}
     - target: {fileID: 114911345111112572, guid: b81b1a58a0f14c9439cbdd014e695f71,
@@ -30682,6 +30702,26 @@ PrefabInstance:
       propertyPath: Pj
       value: 
       objectReference: {fileID: 13058}
+    - target: {fileID: 3103568707283955629, guid: 8c6f7792cef82744db0781f457f2619a,
+        type: 3}
+      propertyPath: Pj
+      value: 
+      objectReference: {fileID: 13058}
+    - target: {fileID: 3103568707283955629, guid: 8c6f7792cef82744db0781f457f2619a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103568707283955629, guid: 8c6f7792cef82744db0781f457f2619a,
+        type: 3}
+      propertyPath: UnSoloJugador
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3823596217935135872, guid: 8c6f7792cef82744db0781f457f2619a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7643776850776794174, guid: 8c6f7792cef82744db0781f457f2619a,
         type: 3}
       propertyPath: m_Name
@@ -30787,11 +30827,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4439550000835895596, guid: 8c6f7792cef82744db0781f457f2619a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c6f7792cef82744db0781f457f2619a, type: 3}
+--- !u!1 &1645623964 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3823596217935135872, guid: 8c6f7792cef82744db0781f457f2619a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1645623963}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1867346591 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6731456611482167423, guid: 52b80d304f3535a4c8f75a6924c043ea,
@@ -31034,8 +31081,14 @@ PrefabInstance:
       propertyPath: 'ProgresoBolsas.Array.data[3]'
       value: 
       objectReference: {fileID: 665071633}
+    - target: {fileID: 7119982364608142336, guid: 52b80d304f3535a4c8f75a6924c043ea,
+        type: 3}
+      propertyPath: Camion
+      value: 
+      objectReference: {fileID: 13058}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6425693863719428526, guid: 52b80d304f3535a4c8f75a6924c043ea, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8762679067823302951, guid: 52b80d304f3535a4c8f75a6924c043ea,

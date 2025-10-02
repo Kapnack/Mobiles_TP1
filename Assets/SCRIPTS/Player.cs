@@ -14,7 +14,9 @@ public class Player : MonoBehaviour
    [HideInInspector] public ControlDireccion ControlDire;
     Visualizacion MiVisualizacion;
 
-    public GameObject CanvasDescarga;
+    public GameObject CanvasUnJugador;
+    public GameObject CanvasDosJugadores;
+    [HideInInspector] public GameObject CanvasDescarga;
     
     private Frenado frenado;
     private Respawn respawn;
@@ -39,6 +41,8 @@ public class Player : MonoBehaviour
         ControlDire = GetComponent<ControlDireccion>();
 
         rb.useGravity = false;
+
+        CanvasDescarga = GameplaySettingsManager.Instance.IsMultiplayer ? CanvasDosJugadores : CanvasUnJugador;
         
         CanvasDescarga?.SetActive(false);
     }

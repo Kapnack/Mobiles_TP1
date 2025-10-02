@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class DescargaHUD : MonoBehaviour
 {
+    [SerializeField] private bool UnSoloJugador;
     [SerializeField] private Player Pj;
     [SerializeField] private Image Relleno;
     [SerializeField] private int MaxBonus = 0;
@@ -14,6 +15,10 @@ public class DescargaHUD : MonoBehaviour
 
     private void Awake()
     {
+        if (UnSoloJugador && GameplaySettingsManager.Instance.IsMultiplayer ||
+            !UnSoloJugador && !GameplaySettingsManager.Instance.IsMultiplayer)
+            Destroy(gameObject);
+
         formatoTexto = TextoBonus.text;
         TextoBonus.text = String.Format(formatoTexto, 0);
     }
