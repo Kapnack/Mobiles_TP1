@@ -100,7 +100,7 @@ public class TaxiComp : MonoBehaviour
 	
 	void FixedUpdate () 
 	{
-		this.transform.position += transform.forward * Time.fixedDeltaTime * Vel;
+		transform.position += transform.forward * (Time.fixedDeltaTime * Vel);
 	}
 	
 	//--------------------------------------------------------------------//
@@ -186,8 +186,8 @@ public class TaxiComp : MonoBehaviour
 	
 	bool Medicion()
 	{
-		float dist1 = (GameManager.Instancia.Player1.transform.position - PosIni).magnitude;
-		float dist2 = (GameManager.Instancia.Player2.transform.position - PosIni).magnitude;
+		float dist1 = (GameManager.Instance.Player1.transform.position - PosIni).magnitude;
+		float dist2 = (GameManager.Instance.Player2.transform.position - PosIni).magnitude;
 		
 		if(dist1 > 4 && dist2 > 4)
 			return true;

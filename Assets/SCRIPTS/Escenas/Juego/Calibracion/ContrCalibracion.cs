@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class ContrCalibracion : MonoBehaviour
 {
@@ -34,8 +33,6 @@ public class ContrCalibracion : MonoBehaviour
     
     public ManejoPallets palletsMover;
 
-    GameManager GM;
-
     //----------------------------------------------------//
 
     private void Awake()
@@ -53,8 +50,6 @@ public class ContrCalibracion : MonoBehaviour
     {
         palletsMover.enabled = false;
         Pj.ContrCalib = this;
-
-        GM = GameObject.Find("GameMgr").GetComponent<GameManager>();
 
         Partida.Recibir(P);
 

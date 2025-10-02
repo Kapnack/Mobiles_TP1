@@ -45,49 +45,7 @@ public class PalletMover : ManejoPallets
         inputMovimiento.started -= ADManager;
         inputAbajo.started -= AbajoManager;
     }
-
-    /*
-    private void Update()
-    {
-        switch (miInput)
-        {
-            case MoveType.WASD:
-                if (!Tenencia() && Desde.Tenencia() && Input.GetKeyDown(KeyCode.A))
-                {
-                    PrimerPaso();
-                }
-
-                if (Tenencia() && Input.GetKeyDown(KeyCode.S))
-                {
-                    SegundoPaso();
-                }
-
-                if (segundoCompleto && Tenencia() && Input.GetKeyDown(KeyCode.D))
-                {
-                    TercerPaso();
-                }
-
-                break;
-            case MoveType.Arrows:
-                if (!Tenencia() && Desde.Tenencia() && Input.GetKeyDown(KeyCode.LeftArrow))
-                {
-                    PrimerPaso();
-                }
-
-                if (Tenencia() && Input.GetKeyDown(KeyCode.DownArrow))
-                {
-                    SegundoPaso();
-                }
-
-                if (segundoCompleto && Tenencia() && Input.GetKeyDown(KeyCode.RightArrow))
-                {
-                    TercerPaso();
-                }
-
-                break;
-        }
-    }
-*/
+    
     private void ADManager(InputAction.CallbackContext context)
     {
         if (Mathf.Approximately(context.ReadValue<float>(), -1))

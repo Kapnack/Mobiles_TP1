@@ -6,10 +6,9 @@ using Systems;
 using UnityEngine.AddressableAssets;
 using UnityEngine.InputSystem;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    public static GameManager Instancia;
-
+    public GameObject calibracionHUDs;
     public AbstractState<GameManager> state;
 
     private StateCalibracion stateCalibracion = new();
@@ -52,15 +51,16 @@ public class GameManager : MonoBehaviour
 
     //--------------------------------------------------------//
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+        
         if (actionAsset != null)
             stateCalibracion._inputSystem = actionAsset;
 
         if (cerrarJuego != null)
             cerrarJuego.action.started += CerrarJuego;
-
-        Instancia = this;
+        
         CanvasJuegoGO?.SetActive(false);
 
         if (!GameplaySettingsManager.Instance.IsMultiplayer)

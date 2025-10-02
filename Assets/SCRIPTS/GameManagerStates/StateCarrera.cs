@@ -37,6 +37,8 @@ namespace entityStates
         {
             this.entity = entity;
 
+            entity.calibracionHUDs.gameObject.SetActive(false);
+            
             var handle = Addressables.InstantiateAsync(entity.Pista);
 
             entity.PistaGO = await handle.Task;

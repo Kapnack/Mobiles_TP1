@@ -6,40 +6,10 @@ namespace GameManagerStates
     public class StateCalibracion : AbstractState<GameManager>
     {
         public InputActionAsset _inputSystem;
-        private InputActionMap _inputField;
-        private InputAction inputMovimiento;
-        
-        
-        public override void Update()
-        {
-            if (entity.PlayerInfo1 != null && !entity.PlayerInfo1.PJ && Input.GetKeyDown(KeyCode.W))
-            {
-                entity.PlayerInfo1 = new GameManager.PlayerInfo(0, entity.Player1);
-                entity.PlayerInfo1.LadoAct = Visualizacion.Lado.Izq;
-                entity.SetPosicion(entity.PlayerInfo1);
-            }
 
-            if (GameplaySettingsManager.Instance.IsMultiplayer)
-            {
-                if (entity.PlayerInfo2 != null && !entity.PlayerInfo2.PJ && Input.GetKeyDown(KeyCode.UpArrow))
-                {
-                    entity.PlayerInfo2 = new GameManager.PlayerInfo(1, entity.Player2);
-                    entity.PlayerInfo2.LadoAct = Visualizacion.Lado.Der;
-                    entity.SetPosicion(entity.PlayerInfo2);
-                }
-            }
+        private InputAction _confirmar1;
+        private InputAction _confirmar2;
 
-            if (GameplaySettingsManager.Instance.IsMultiplayer)
-            {
-                if (entity.PlayerInfo1.PJ && entity.PlayerInfo2.PJ)
-                    Finalizar();
-            }
-            else
-            {
-                if (entity.PlayerInfo1.PJ)
-                    Finalizar();
-            }
-        }
         public override void Cambiar(GameManager entity)
         {
             this.entity = entity;
@@ -48,6 +18,7 @@ namespace GameManagerStates
 
         public override void Empezar()
         {
+            // Mostrar objetos de calibración
             for (int i = 0; i < entity.ObjsCalibracion1.Length; i++)
             {
                 entity.ObjsCalibracion1[i].SetActiveRecursively(true);
@@ -56,16 +27,65 @@ namespace GameManagerStates
                     entity.ObjsCalibracion2[i].SetActiveRecursively(true);
             }
 
+            // Cambiar jugadores a modo calibración
             entity.Player1.CambiarACalibracion();
-
             if (GameplaySettingsManager.Instance.IsMultiplayer)
                 entity.Player2.CambiarACalibracion();
+
+            // Buscar acciones en el InputActionAsset
+            var map1 = _inputSystem.FindActionMap("Jugador1", true);
+            _confirmar1 = map1.FindAction("Confirmar");
+            map1.Enable();
+
+            if (GameplaySettingsManager.Instance.IsMultiplayer)
+            {
+                var map2 = _inputSystem.FindActionMap("Jugador2", true);
+                _confirmar2 = map2.FindAction("Confirmar");
+                map2.Enable();
+            }
+        }
+
+        public override void Update()
+        {
+            // Jugador 1 confirma
+            if (entity.PlayerInfo1 != null && !entity.PlayerInfo1.PJ && _confirmar1.WasPressedThisFrame())
+            {
+                entity.PlayerInfo1 = new GameManager.PlayerInfo(0, entity.Player1);
+                entity.PlayerInfo1.LadoAct = Visualizacion.Lado.Izq;
+                entity.SetPosicion(entity.PlayerInfo1);
+            }
+
+            // Jugador 2 confirma
+            if (GameplaySettingsManager.Instance.IsMultiplayer)
+            {
+                if (entity.PlayerInfo2 != null && !entity.PlayerInfo2.PJ && _confirmar2.WasPressedThisFrame())
+                {
+                    entity.PlayerInfo2 = new GameManager.PlayerInfo(1, entity.Player2);
+                    entity.PlayerInfo2.LadoAct = Visualizacion.Lado.Der;
+                    entity.SetPosicion(entity.PlayerInfo2);
+                }
+            }
+
+            // Chequear finalización
+            if (GameplaySettingsManager.Instance.IsMultiplayer)
+            {
+                if (entity.PlayerInfo1.PJ && entity.PlayerInfo2.PJ)
+                    Finalizar();
+            }
+            else if (entity.PlayerInfo1.PJ)
+            {
+                Finalizar();
+            }
         }
 
         public override void Finalizar()
         {
             entity.state = entity.stateCarrera;
             entity.state.Cambiar(entity);
+
+            // Desactivar inputs
+            _confirmar1?.Disable();
+            _confirmar2?.Disable();
         }
     }
 }

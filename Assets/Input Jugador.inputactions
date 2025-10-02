@@ -23,6 +23,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Confirmar",
+                    "type": "Button",
+                    "id": "82512b19-d547-4aea-bbaf-343ac121881b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -69,6 +78,17 @@
                     "action": "Abajo",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4d75ccdb-5dba-4d31-a038-1c787401c598",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Confirmar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -89,6 +109,15 @@
                     "name": "Abajo",
                     "type": "Button",
                     "id": "db78ef01-1230-4056-96f9-4d0da8830633",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Confirmar",
+                    "type": "Button",
+                    "id": "b886a513-579c-4105-be60-1734e7f4a0e0",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -137,6 +166,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Abajo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4660decd-16eb-4b18-9976-9c0d0ce29e5e",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Confirmar",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
