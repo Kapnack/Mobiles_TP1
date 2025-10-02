@@ -29,6 +29,7 @@ public class MngPts : MonoBehaviour
 
     [SerializeField] private TMP_Text puntajeJugador2Texto;
     private string puntajeJugador2Formato;
+    private bool cambioEscenaNoTrigereada = false;
 
     private void Awake()
     {
@@ -54,7 +55,14 @@ public class MngPts : MonoBehaviour
             salirDelJuego.action.started -= SalirDelJuegoConInput;
     }
 
-    private void CargarNivel(InputAction.CallbackContext _) => SceneOrganizer.Instance.LoadGameplayScene();
+    private void CargarNivel(InputAction.CallbackContext _)
+    {
+        if (cambioEscenaNoTrigereada)
+            return;
+
+        cambioEscenaNoTrigereada = true;
+        SceneOrganizer.Instance.LoadGameplayScene();
+    }
 
     private void SalirDelJuegoConInput(InputAction.CallbackContext _)
     {
@@ -70,6 +78,15 @@ public class MngPts : MonoBehaviour
 #endif
     }
 
+    public void VolverAlMenuPrincipal()
+    {
+        if(cambioEscenaNoTrigereada)
+            return;
+        
+        cambioEscenaNoTrigereada = true;
+        SceneOrganizer.Instance.LoadGameplayScene();
+    }
+    
     private void Start()
     {
         SetGanador();
@@ -80,6 +97,10 @@ public class MngPts : MonoBehaviour
         TiempEspReiniciar -= Time.deltaTime;
         if (TiempEspReiniciar <= 0)
         {
+            if (cambioEscenaNoTrigereada)
+                return;
+
+            cambioEscenaNoTrigereada = true;
             SceneOrganizer.Instance.LoadGameplayScene();
         }
     }
