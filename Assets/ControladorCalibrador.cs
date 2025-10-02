@@ -10,24 +10,33 @@ public class ControladorCalibrador : MonoBehaviour
 
     private void Awake()
     {
+        HUDPJ1.SetActive(false);
+        HUDPJ2.SetActive(false);
+        HUDUnJugador.SetActive(false);
+        
         if (!GameplaySettingsManager.Instance.IsMultiplayer)
         {
+#if UNITY_ANDROID || UNITY_IOS
             HUDPJ1.SetActive(false);
             HUDPJ2.SetActive(false);
-            Escena2.SetActive(false);
             HUDUnJugador.SetActive(true);
+#endif
+            Escena2.SetActive(false);
         }
         else
         {
+#if UNITY_ANDROID || UNITY_IOS
             HUDPJ1.SetActive(true);
             HUDPJ2.SetActive(true);
-            Escena2.SetActive(true);
             HUDUnJugador.SetActive(false);
+#endif
+
+            Escena2.SetActive(true);
         }
     }
 
     private void OnDisable()
     {
-       Destroy(gameObject);
+        Destroy(gameObject);
     }
 }

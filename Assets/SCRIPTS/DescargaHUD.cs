@@ -10,11 +10,19 @@ public class DescargaHUD : MonoBehaviour
     [SerializeField] private Image Relleno;
     [SerializeField] private int MaxBonus = 0;
 
+    [SerializeField] private GameObject Boton;
+
     [SerializeField] private TMP_Text TextoBonus;
     private string formatoTexto;
 
     private void Awake()
     {
+#if UNITY_ANDROID || UNITY_IOS
+        Boton.SetActive(true);
+#else
+         Boton.SetActive(false);
+#endif
+
         if (UnSoloJugador && GameplaySettingsManager.Instance.IsMultiplayer ||
             !UnSoloJugador && !GameplaySettingsManager.Instance.IsMultiplayer)
             Destroy(gameObject);

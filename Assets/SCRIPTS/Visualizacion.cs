@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using System.Collections;
 
 /// <summary>
 /// clase encargada de TODA la visualizacion

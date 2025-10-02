@@ -20,8 +20,18 @@ public class Estadisticas : MonoBehaviour
     private float TimerFlash = 0f;
     private Coroutine flashCorrutina;
 
+    [SerializeField] private GameObject[] Botones;
+
     private void Awake()
     {
+#if UNITY_ANDROID || UNITY_IOS
+        foreach (var obj in Botones)
+            obj.SetActive(true);
+#else
+        foreach (var obj in Botones)
+            obj.SetActive(false);
+#endif
+
         if (UnSoloJugador && GameplaySettingsManager.Instance.IsMultiplayer ||
             !UnSoloJugador && !GameplaySettingsManager.Instance.IsMultiplayer)
             Destroy(gameObject);

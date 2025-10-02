@@ -31144,16 +31144,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 28393549011824835, guid: 8c6f7792cef82744db0781f457f2619a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 839
+      objectReference: {fileID: 0}
     - target: {fileID: 1648656564923147576, guid: 8c6f7792cef82744db0781f457f2619a,
         type: 3}
       propertyPath: Pj
       value: 
       objectReference: {fileID: 27660010}
+    - target: {fileID: 1648656564923147576, guid: 8c6f7792cef82744db0781f457f2619a,
+        type: 3}
+      propertyPath: Boton
+      value: 
+      objectReference: {fileID: 1645623966}
     - target: {fileID: 2643950748383837723, guid: 8c6f7792cef82744db0781f457f2619a,
         type: 3}
       propertyPath: Pj
       value: 
       objectReference: {fileID: 13058}
+    - target: {fileID: 2643950748383837723, guid: 8c6f7792cef82744db0781f457f2619a,
+        type: 3}
+      propertyPath: Boton
+      value: 
+      objectReference: {fileID: 1645623965}
     - target: {fileID: 3103568707283955629, guid: 8c6f7792cef82744db0781f457f2619a,
         type: 3}
       propertyPath: Pj
@@ -31161,12 +31176,22 @@ PrefabInstance:
       objectReference: {fileID: 13058}
     - target: {fileID: 3103568707283955629, guid: 8c6f7792cef82744db0781f457f2619a,
         type: 3}
+      propertyPath: Boton
+      value: 
+      objectReference: {fileID: 1645623967}
+    - target: {fileID: 3103568707283955629, guid: 8c6f7792cef82744db0781f457f2619a,
+        type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3103568707283955629, guid: 8c6f7792cef82744db0781f457f2619a,
         type: 3}
       propertyPath: UnSoloJugador
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103568707283955629, guid: 8c6f7792cef82744db0781f457f2619a,
+        type: 3}
+      propertyPath: Bottones.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3823596217935135872, guid: 8c6f7792cef82744db0781f457f2619a,
@@ -31291,6 +31316,24 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1645623963}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1645623965 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6876546104504469152, guid: 8c6f7792cef82744db0781f457f2619a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1645623963}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1645623966 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8968128931752840997, guid: 8c6f7792cef82744db0781f457f2619a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1645623963}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1645623967 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3880456922338578908, guid: 8c6f7792cef82744db0781f457f2619a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1645623963}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1867346591 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6731456611482167423, guid: 52b80d304f3535a4c8f75a6924c043ea,
@@ -31348,6 +31391,21 @@ PrefabInstance:
       propertyPath: TextoDinero
       value: 
       objectReference: {fileID: 43706632}
+    - target: {fileID: 776031384350764269, guid: 52b80d304f3535a4c8f75a6924c043ea,
+        type: 3}
+      propertyPath: Botones.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 776031384350764269, guid: 52b80d304f3535a4c8f75a6924c043ea,
+        type: 3}
+      propertyPath: 'Botones.Array.data[0]'
+      value: 
+      objectReference: {fileID: 766467494}
+    - target: {fileID: 776031384350764269, guid: 52b80d304f3535a4c8f75a6924c043ea,
+        type: 3}
+      propertyPath: 'Botones.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1867346591}
     - target: {fileID: 776031384350764269, guid: 52b80d304f3535a4c8f75a6924c043ea,
         type: 3}
       propertyPath: ProgresoBolsas.Array.size
@@ -31510,6 +31568,21 @@ PrefabInstance:
       objectReference: {fileID: 673807838}
     - target: {fileID: 6468909254848055413, guid: 52b80d304f3535a4c8f75a6924c043ea,
         type: 3}
+      propertyPath: Botones.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6468909254848055413, guid: 52b80d304f3535a4c8f75a6924c043ea,
+        type: 3}
+      propertyPath: 'Botones.Array.data[0]'
+      value: 
+      objectReference: {fileID: 483166741}
+    - target: {fileID: 6468909254848055413, guid: 52b80d304f3535a4c8f75a6924c043ea,
+        type: 3}
+      propertyPath: 'Botones.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1231417438}
+    - target: {fileID: 6468909254848055413, guid: 52b80d304f3535a4c8f75a6924c043ea,
+        type: 3}
       propertyPath: ProgresoBolsas.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -31538,6 +31611,21 @@ PrefabInstance:
       propertyPath: Camion
       value: 
       objectReference: {fileID: 13058}
+    - target: {fileID: 7119982364608142336, guid: 52b80d304f3535a4c8f75a6924c043ea,
+        type: 3}
+      propertyPath: Botones.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7119982364608142336, guid: 52b80d304f3535a4c8f75a6924c043ea,
+        type: 3}
+      propertyPath: 'Botones.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1889455962}
+    - target: {fileID: 7119982364608142336, guid: 52b80d304f3535a4c8f75a6924c043ea,
+        type: 3}
+      propertyPath: 'Botones.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1889455961}
     - target: {fileID: 8456882225041519902, guid: 52b80d304f3535a4c8f75a6924c043ea,
         type: 3}
       propertyPath: m_IsActive
@@ -31570,6 +31658,18 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1867346595}
   m_SourcePrefab: {fileID: 100100000, guid: 52b80d304f3535a4c8f75a6924c043ea, type: 3}
+--- !u!1 &1889455961 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7620497261991880227, guid: 52b80d304f3535a4c8f75a6924c043ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 1889455960}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1889455962 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7874642106865691016, guid: 52b80d304f3535a4c8f75a6924c043ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 1889455960}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1905451020 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4635148379744032020, guid: 52b80d304f3535a4c8f75a6924c043ea,
@@ -31685,6 +31785,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8283508255224295785}
     m_Modifications:
+    - target: {fileID: 28393549011824835, guid: 8c6f7792cef82744db0781f457f2619a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 838.99994
+      objectReference: {fileID: 0}
     - target: {fileID: 1648656564923147576, guid: 8c6f7792cef82744db0781f457f2619a,
         type: 3}
       propertyPath: Pj
