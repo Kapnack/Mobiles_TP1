@@ -22,8 +22,10 @@ public class Estadisticas : MonoBehaviour
 
     private void Awake()
     {
-        if (UnSoloJugador && GameplaySettingsManager.Instance.IsMultiplayer)
+        if (UnSoloJugador && GameplaySettingsManager.Instance.IsMultiplayer ||
+            !UnSoloJugador && !GameplaySettingsManager.Instance.IsMultiplayer)
             Destroy(gameObject);
+
 
         if (Camion == null)
         {

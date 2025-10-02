@@ -65,6 +65,8 @@ public class GameManager : MonoBehaviour
 
         if (!GameplaySettingsManager.Instance.IsMultiplayer)
             Player2.gameObject.SetActive(false);
+        else
+            Player2.gameObject.SetActive(true);
     }
 
     private void OnDestroy()
@@ -115,14 +117,6 @@ public class GameManager : MonoBehaviour
             else
                 Player1.GetComponent<Visualizacion>().SetLado(Visualizacion.Lado.Izq);
         }
-    }
-
-    public void FinTutorial(int playerID)
-    {
-    }
-
-    public void FinCalibracion(int playerID)
-    {
     }
 
     [Serializable]

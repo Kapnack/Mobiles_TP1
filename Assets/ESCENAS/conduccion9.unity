@@ -30720,7 +30720,7 @@ PrefabInstance:
     - target: {fileID: 3823596217935135872, guid: 8c6f7792cef82744db0781f457f2619a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7643776850776794174, guid: 8c6f7792cef82744db0781f457f2619a,
         type: 3}
@@ -31086,6 +31086,16 @@ PrefabInstance:
       propertyPath: Camion
       value: 
       objectReference: {fileID: 13058}
+    - target: {fileID: 8456882225041519902, guid: 52b80d304f3535a4c8f75a6924c043ea,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784299360107034303, guid: 52b80d304f3535a4c8f75a6924c043ea,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6425693863719428526, guid: 52b80d304f3535a4c8f75a6924c043ea, type: 3}

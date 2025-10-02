@@ -86,7 +86,6 @@ public class ContrCalibracion : MonoBehaviour
     {
         EstAct = ContrCalibracion.Estados.Finalizado;
         palletsMover.enabled = false;
-        GM.FinCalibracion(Pj.IdPlayer);
     }
 
     private void SetActivComp(bool estado)

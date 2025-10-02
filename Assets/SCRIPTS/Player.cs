@@ -3,21 +3,21 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
-    [HideInInspector]public int Dinero = 0;
+    [HideInInspector] public int Dinero = 0;
     public int IdPlayer = 0;
 
     [HideInInspector] public Bolsa[] Bolasas;
     [HideInInspector] public int CantBolsAct = 0;
 
-   [HideInInspector] public ControladorDeDescarga ContrDesc;
-   [HideInInspector] public ContrCalibracion ContrCalib;
-   [HideInInspector] public ControlDireccion ControlDire;
+    [HideInInspector] public ControladorDeDescarga ContrDesc;
+    [HideInInspector] public ContrCalibracion ContrCalib;
+    [HideInInspector] public ControlDireccion ControlDire;
     Visualizacion MiVisualizacion;
 
-    public GameObject CanvasUnJugador;
-    public GameObject CanvasDosJugadores;
+    [SerializeField] private GameObject CanvasUnJugador;
+    [SerializeField] private GameObject CanvasDosJugadores;
     [HideInInspector] public GameObject CanvasDescarga;
-    
+
     private Frenado frenado;
     private Respawn respawn;
 
@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
         rb.useGravity = false;
 
         CanvasDescarga = GameplaySettingsManager.Instance.IsMultiplayer ? CanvasDosJugadores : CanvasUnJugador;
-        
+
         CanvasDescarga?.SetActive(false);
     }
 
