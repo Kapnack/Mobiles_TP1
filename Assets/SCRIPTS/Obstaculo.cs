@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(BoxCollider))]
 public class Obstaculo : MonoBehaviour 
 {
 	public float TiempEmpDesapa = 1;
