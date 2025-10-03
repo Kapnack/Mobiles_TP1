@@ -54,13 +54,13 @@ public class GameManager : Singleton<GameManager>
     protected override void Awake()
     {
         base.Awake();
-        
+
         if (actionAsset != null)
             stateCalibracion._inputSystem = actionAsset;
 
         if (cerrarJuego != null)
             cerrarJuego.action.started += CerrarJuego;
-        
+
         CanvasJuegoGO?.SetActive(false);
 
         if (!GameplaySettingsManager.Instance.IsMultiplayer)
@@ -119,6 +119,29 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public void FinCalibracion(int playerID)
+    {
+        if (GameplaySettingsManager.Instance.IsMultiplayer)
+        {
+            if (playerID == 0)
+            {
+                PlayerInfo1.FinTuto1 = true;
+            }
+            else if (playerID == 1)
+            {
+                PlayerInfo2.FinTuto1 = true;
+            }
+
+            if (PlayerInfo1.PJ != null && PlayerInfo2.PJ != null)
+                if (PlayerInfo1.FinTuto1 && PlayerInfo2.FinTuto1)
+                {
+                    state.Finalizar();
+                }
+        }
+        else if (PlayerInfo1.PJ != null)
+            state.Finalizar();
+    }
+
     [Serializable]
     public class PlayerInfo
     {
@@ -126,6 +149,9 @@ public class GameManager : Singleton<GameManager>
         {
             PJ = pj;
         }
+
+        public bool FinTuto1 = false;
+        public bool FinTuto2 = false;
 
         public Visualizacion.Lado LadoAct;
 

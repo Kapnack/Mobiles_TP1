@@ -7,6 +7,8 @@ public class ContrCalibracion : MonoBehaviour
     public float TiempEspCalib = 3;
     float Tempo2 = 0;
 
+    [SerializeField] private int playerIndex = 0;
+    
     public enum Estados
     {
         Calibrando,
@@ -79,8 +81,10 @@ public class ContrCalibracion : MonoBehaviour
 
     public void FinTutorial()
     {
-        EstAct = ContrCalibracion.Estados.Finalizado;
+        EstAct = Estados.Finalizado;
         palletsMover.enabled = false;
+
+        GameManager.Instance.FinCalibracion(Pj.IdPlayer);
     }
 
     private void SetActivComp(bool estado)

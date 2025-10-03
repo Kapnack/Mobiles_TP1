@@ -47,8 +47,7 @@ namespace GameManagerStates
 
         public override void Update()
         {
-            // Jugador 1 confirma
-            if (entity.PlayerInfo1 != null && !entity.PlayerInfo1.PJ && _confirmar1.WasPressedThisFrame())
+            if (!entity.PlayerInfo1.PJ && _confirmar1.WasPressedThisFrame())
             {
                 entity.PlayerInfo1 = new GameManager.PlayerInfo(0, entity.Player1);
                 entity.PlayerInfo1.LadoAct = Visualizacion.Lado.Izq;
@@ -58,7 +57,7 @@ namespace GameManagerStates
             // Jugador 2 confirma
             if (GameplaySettingsManager.Instance.IsMultiplayer)
             {
-                if (entity.PlayerInfo2 != null && !entity.PlayerInfo2.PJ && _confirmar2.WasPressedThisFrame())
+                if (!entity.PlayerInfo2.PJ && _confirmar2.WasPressedThisFrame())
                 {
                     entity.PlayerInfo2 = new GameManager.PlayerInfo(1, entity.Player2);
                     entity.PlayerInfo2.LadoAct = Visualizacion.Lado.Der;
@@ -70,11 +69,14 @@ namespace GameManagerStates
             if (GameplaySettingsManager.Instance.IsMultiplayer)
             {
                 if (entity.PlayerInfo1.PJ && entity.PlayerInfo2.PJ)
-                    Finalizar();
+                    if (entity.PlayerInfo1.FinTuto1 && entity.PlayerInfo2.FinTuto2)
+                        Finalizar();
             }
-            else if (entity.PlayerInfo1.PJ)
+            else
             {
-                Finalizar();
+                if (entity.PlayerInfo1.PJ)
+                    if (entity.PlayerInfo1.FinTuto1)
+                        Finalizar();
             }
         }
 
