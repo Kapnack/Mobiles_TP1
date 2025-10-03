@@ -7,19 +7,10 @@ using UnityEngine.InputSystem;
 
 public class MngPts : MonoBehaviour
 {
-    Rect R;
-
-    float Tempo = 0;
-
-    int IndexGanador = 0;
-    
     [SerializeField] private InputActionReference salirDelJuego;
 
-    public float TiempEspReiniciar = 10;
-
-    float TempoParpadeo = 0;
-    bool PrimerImaParp = true;
-
+    public float TiempEspReiniciar = 5;
+    
     [SerializeField] private GameObject puntajeJugador1;
     [SerializeField] private GameObject puntajeJugador2;
 
@@ -83,19 +74,6 @@ public class MngPts : MonoBehaviour
     private void Start()
     {
         SetGanador();
-    }
-
-    private void Update()
-    {
-        TiempEspReiniciar -= Time.deltaTime;
-        if (TiempEspReiniciar <= 0)
-        {
-            if (cambioEscenaNoTrigereada)
-                return;
-
-            cambioEscenaNoTrigereada = true;
-            SceneOrganizer.Instance.LoadGameplayScene();
-        }
     }
 
     private void SetGanador()

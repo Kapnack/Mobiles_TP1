@@ -44,7 +44,8 @@ public class Player : MonoBehaviour
 
         CanvasDescarga = GameplaySettingsManager.Instance.IsMultiplayer ? CanvasDosJugadores : CanvasUnJugador;
 
-        CanvasDescarga?.SetActive(false);
+        CanvasUnJugador.gameObject.SetActive(false);
+        CanvasDosJugadores.gameObject.SetActive(false);
     }
 
     private void Start()

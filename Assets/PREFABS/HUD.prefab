@@ -236,6 +236,7 @@ GameObject:
   - component: {fileID: 5292506975640266244}
   - component: {fileID: 3070906205606463908}
   - component: {fileID: 3171244922666317174}
+  - component: {fileID: 1344831575353118932}
   m_Layer: 5
   m_Name: Image (2)
   m_TagString: Untagged
@@ -300,6 +301,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1344831575353118932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2748407261942605867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Keyboard>/leftArrow
 --- !u!1 &3337417469685474903
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,6 +446,7 @@ MonoBehaviour:
   - {fileID: 3872872010733493827}
   FinalBolsas: {fileID: 1644676303904718873}
   TextoDinero: {fileID: 8167740775067612552}
+  Botones: []
 --- !u!1 &3439339558318876566
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,6 +744,7 @@ GameObject:
   - component: {fileID: 2123273200216068262}
   - component: {fileID: 4312903397327831502}
   - component: {fileID: 2491003342630805443}
+  - component: {fileID: 883324585732003269}
   m_Layer: 5
   m_Name: Image (1)
   m_TagString: Untagged
@@ -793,6 +809,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &883324585732003269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3691385563779081411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Keyboard>/d
 --- !u!1 &3872872010733493827
 GameObject:
   m_ObjectHideFlags: 0
@@ -1320,15 +1349,16 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &809634332063217709
-RectTransform:
+--- !u!4 &809634332063217709
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5689149819566973080}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 960.00006, y: 540.00006, z: 0}
   m_LocalScale: {x: 0.48333332, y: 0.48333332, z: 0.48333332}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1337,11 +1367,6 @@ RectTransform:
   - {fileID: 7474722008961451802}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 960.00006, y: 540.00006}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5740694116590135552
 GameObject:
   m_ObjectHideFlags: 0
@@ -1789,6 +1814,7 @@ GameObject:
   - component: {fileID: 3229201496331407247}
   - component: {fileID: 7646744413743031851}
   - component: {fileID: 1894274345134024330}
+  - component: {fileID: 8545178992203248333}
   m_Layer: 5
   m_Name: Image (3)
   m_TagString: Untagged
@@ -1853,6 +1879,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8545178992203248333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6731456611482167423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Keyboard>/rightArrow
 --- !u!1 &6818762177775203327
 GameObject:
   m_ObjectHideFlags: 0
@@ -2200,7 +2239,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3349414300265990868
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2313,6 +2352,7 @@ MonoBehaviour:
   - {fileID: 8892969549181275139}
   FinalBolsas: {fileID: 6185934396557360827}
   TextoDinero: {fileID: 281403168480960878}
+  Botones: []
 --- !u!1 &8639089944195740528
 GameObject:
   m_ObjectHideFlags: 0
@@ -2399,6 +2439,7 @@ GameObject:
   - component: {fileID: 6566696114847837921}
   - component: {fileID: 4186260583280755047}
   - component: {fileID: 5505604703720030021}
+  - component: {fileID: 1920583782603544668}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -2463,6 +2504,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1920583782603544668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8762679067823302951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Keyboard>/a
 --- !u!1 &8784299360107034303
 GameObject:
   m_ObjectHideFlags: 0
@@ -2482,7 +2536,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7474722008961451802
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2595,6 +2649,7 @@ MonoBehaviour:
   - {fileID: 4635148379744032020}
   FinalBolsas: {fileID: 5961426982790755207}
   TextoDinero: {fileID: 2685099401351169112}
+  Botones: []
 --- !u!1 &8892969549181275139
 GameObject:
   m_ObjectHideFlags: 0
