@@ -13,5 +13,10 @@ namespace Systems
             else
                 Destroy(gameObject);
         }
+
+        protected virtual void OnDestroy()
+        {
+            Instance = null;
+        }
     }
 }

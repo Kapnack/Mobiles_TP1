@@ -74,9 +74,21 @@ namespace Systems.SceneLoader
             }
         }
 
-        private async Task StartUnloading(Scene activeScenes)
+        private Task StartUnloading(Scene scene)
         {
-            await SceneManager.UnloadSceneAsync(activeScenes);
+            var tcs = new TaskCompletionSource<bool>();
+
+            var op = SceneManager.UnloadSceneAsync(scene);
+            if (op == null)
+            {
+                tcs.SetResult(true);
+            }
+            else
+            {
+                op.completed += _ => tcs.SetResult(true);
+            }
+
+            return tcs.Task;
         }
 
         /// <inheritdoc/>
@@ -132,13 +144,33 @@ namespace Systems.SceneLoader
         /// <inheritdoc/>
         public async Task UnloadAll()
         {
-            for (var i = _activeScenes.Count - 1; i >= 0; i--)
+            var tasks = new List<Task>();
+
+            for (int i = _activeScenes.Count - 1; i >= 0; i--)
             {
                 var scene = _activeScenes[i];
-
                 _activeScenes.RemoveAt(i);
-                await StartUnloading(scene);
+                tasks.Add(UnloadSceneTask(scene));
             }
+
+            await Task.WhenAll(tasks);
+        }
+        
+        private Task UnloadSceneTask(Scene scene)
+        {
+            var tcs = new TaskCompletionSource<bool>();
+
+            AsyncOperation op = SceneManager.UnloadSceneAsync(scene);
+            if (op == null)
+            {
+                tcs.SetResult(true);
+            }
+            else
+            {
+                op.completed += _ => tcs.TrySetResult(true);
+            }
+
+            return tcs.Task;
         }
 
         /// <inheritdoc/>

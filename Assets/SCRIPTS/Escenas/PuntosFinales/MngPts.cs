@@ -12,8 +12,7 @@ public class MngPts : MonoBehaviour
     float Tempo = 0;
 
     int IndexGanador = 0;
-
-    [SerializeField] private InputActionReference cargarNivel;
+    
     [SerializeField] private InputActionReference salirDelJuego;
 
     public float TiempEspReiniciar = 10;
@@ -33,9 +32,6 @@ public class MngPts : MonoBehaviour
 
     private void Awake()
     {
-        if (cargarNivel != null)
-            cargarNivel.action.started += CargarNivel;
-
         if (salirDelJuego != null)
             salirDelJuego.action.started += SalirDelJuegoConInput;
 
@@ -48,14 +44,11 @@ public class MngPts : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (cargarNivel != null)
-            cargarNivel.action.started -= CargarNivel;
-
         if (salirDelJuego != null)
             salirDelJuego.action.started -= SalirDelJuegoConInput;
     }
 
-    private void CargarNivel(InputAction.CallbackContext _)
+    public void CargarNivel()
     {
         if (cambioEscenaNoTrigereada)
             return;
@@ -80,13 +73,13 @@ public class MngPts : MonoBehaviour
 
     public void VolverAlMenuPrincipal()
     {
-        if(cambioEscenaNoTrigereada)
+        if (cambioEscenaNoTrigereada)
             return;
-        
+
         cambioEscenaNoTrigereada = true;
-        SceneOrganizer.Instance.LoadGameplayScene();
+        SceneOrganizer.Instance.LoadMainMenuScene();
     }
-    
+
     private void Start()
     {
         SetGanador();

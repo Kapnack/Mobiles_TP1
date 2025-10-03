@@ -43,7 +43,6 @@ namespace Systems
         public void LoadEndGameScene()
         {
             _sceneToLoad = new[] {endGameScene};
-            
             TryChangeScene(_sceneToLoad);
         }
 
@@ -53,7 +52,7 @@ namespace Systems
             
             try
             {
-                 _sceneLoader.UnloadAll();
+                await _sceneLoader.UnloadAll();
                 await _sceneLoader.LoadSceneAsync(newSceneRef);
             }
             catch (Exception e)

@@ -527,7 +527,7 @@ RectTransform:
   m_GameObject: {fileID: 265236258}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.3014301, y: 1.3014301, z: 1.3014301}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 526174165}
@@ -535,7 +535,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -240, y: -85}
+  m_AnchoredPosition: {x: -200, y: -85}
   m_SizeDelta: {x: 202.49268, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &265236260
@@ -584,7 +584,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 23}
         m_TargetAssemblyTypeName: MngPts, Assembly-CSharp
-        m_MethodName: SalirPrograma
+        m_MethodName: CargarNivel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -839,11 +839,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1432633305}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 292.5183, y: -243.79663}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 482, y: 113}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1, y: 0}
 --- !u!1 &928615921
 GameObject:
   m_ObjectHideFlags: 0
@@ -872,7 +872,7 @@ RectTransform:
   m_GameObject: {fileID: 928615921}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.3014301, y: 1.3014301, z: 1.3014301}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 235192833}
@@ -880,7 +880,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 240, y: -85}
+  m_AnchoredPosition: {x: 200, y: -85}
   m_SizeDelta: {x: 202.4927, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &928615923
@@ -1168,7 +1168,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 1
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1262,7 +1262,7 @@ RectTransform:
   m_GameObject: {fileID: 1456379619}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.3014301, y: 1.3014301, z: 1.3014301}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2029109415}

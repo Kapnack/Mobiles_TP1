@@ -69,7 +69,7 @@ public class GameManager : Singleton<GameManager>
             Player2.gameObject.SetActive(true);
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         if (cerrarJuego != null)
             cerrarJuego.action.started -= CerrarJuego;
