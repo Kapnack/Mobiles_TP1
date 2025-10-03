@@ -1,0 +1,12 @@
+Finite State Machine: Dentro del script GameManager.cs implementé el patrón Finite State Machine.
+			Esto prevé que el bucle principal del gameplay esté verificando constantemente todas las condiciones de los diferentes estados del juego: 
+			Calibración, Carrera y Final del juego.
+
+Fábrica Abstracta: Creé un script encargado de instanciar y modificar los valores de velocidad de los taxis según la dificultad configurada en el juego.
+			La fábrica resuelve la necesidad de no tener que instanciar todas las entidades de una sola vez y, 
+			en caso de querer reemplazar el taxi por otro obstáculo, solo modificas el constructor y listo.
+
+Singleton: Este patrón permite crear una clase que puede ser accedida de forma estática y garantiza que no existan dos o más instancias de la misma entidad.
+		De esta manera, se evita que, por ejemplo, existan múltiples instancias de GameManager.cs que modifiquen el estado del juego de forma simultánea.
+		Además de utilizarlo para prevenir la duplicación de instancias, 
+		lo utilizó con el fin de acceder a métodos y campos de las clases sin necesidad de pasar una referencia explícita de la misma a la clase donde se quiera usar.
