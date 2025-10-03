@@ -67,8 +67,10 @@ public class GameManager : Singleton<GameManager>
             Player2.gameObject.SetActive(false);
         else
             Player2.gameObject.SetActive(true);
+        
+        cerrarJuego.action.Enable();
     }
-
+    
     private void OnDisable()
     {
         if (cerrarJuego != null)

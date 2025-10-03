@@ -19,7 +19,8 @@ public class PalletMover : ManejoPallets
 
     [SerializeField] private InputActionAsset _inputSystem;
     private InputActionMap _inputField;
-    private InputAction inputMovimiento;
+    private InputAction inputIzq;
+    private InputAction inpurDer;
     private InputAction inputAbajo;
 
     private void Awake()
@@ -33,16 +34,19 @@ public class PalletMover : ManejoPallets
             _inputField = _inputSystem.FindActionMap("Jugador2", true);
         }
 
-        inputMovimiento = _inputField.FindAction("Movimiento");
+        inputIzq = _inputField.FindAction("Izquierda");
+        inpurDer = _inputField.FindAction("Derecha");
         inputAbajo = _inputField.FindAction("Abajo");
 
-        inputMovimiento.started += ADManager;
+        inputIzq.started += IzquierdaManager;
+        inpurDer.started += DerechaManager;
         inputAbajo.started += AbajoManager;
     }
 
     private void OnDestroy()
     {
-        inputMovimiento.started -= ADManager;
+        inputIzq.started -= IzquierdaManager;
+        inpurDer.started -= DerechaManager;
         inputAbajo.started -= AbajoManager;
     }
     
@@ -57,8 +61,11 @@ public class PalletMover : ManejoPallets
             TercerPaso();
         }
     }
-
+    
+    private void DerechaManager(InputAction.CallbackContext _) => TercerPaso();
     private void AbajoManager(InputAction.CallbackContext _) => SegundoPaso();
+    private void IzquierdaManager(InputAction.CallbackContext _) => PrimerPaso();
+
 
     private void PrimerPaso()
     {

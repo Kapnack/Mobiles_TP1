@@ -1,7 +1,5 @@
 using UnityEngine;
-using System.Collections;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class ControlDireccion : MonoBehaviour
 {
@@ -17,35 +15,34 @@ public class ControlDireccion : MonoBehaviour
     private InputActionMap _inputField;
     private InputAction inputMovimiento;
 
-    float Giro = 0;
-
     public bool Habilitado = true;
-
     private CarController carController;
-
-    //---------------------------------------------------------//
 
     private void Awake()
     {
         carController = GetComponent<CarController>();
 
-        if (InputAct == TipoInput.AWSD)
-        {
-            _inputField = _inputSystem.FindActionMap("Jugador1", true);
-        }
-        else if (InputAct == TipoInput.Arrows)
-        {
-            _inputField = _inputSystem.FindActionMap("Jugador2", true);
-        }
+        string mapName = InputAct == TipoInput.AWSD ? "Jugador1" : "Jugador2";
+        _inputField = _inputSystem.FindActionMap(mapName, true);
 
-        inputMovimiento = _inputField.FindAction("Movimiento");
-
+        inputMovimiento = _inputField.FindAction("Movimiento", true);
         _inputField.Enable();
+    }
+
+    private void OnDestroy()
+    {
+        _inputField?.Disable();
     }
 
     private void Update()
     {
+        if(!_inputField.enabled)
+            _inputField.Enable();
+        
         if (Habilitado)
-            carController.SetGiro(inputMovimiento.ReadValue<float>());
+        {
+            float giro = inputMovimiento.ReadValue<float>();
+            carController.SetGiro(giro);
+        }
     }
 }
