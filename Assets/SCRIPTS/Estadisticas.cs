@@ -10,6 +10,8 @@ public class Estadisticas : MonoBehaviour
 
     private float CooldownFlash = 0.2f;
 
+    [SerializeField] private GameObject[] botones;
+    
     [SerializeField] private Player Camion;
 
     [SerializeField] private List<GameObject> ProgresoBolsas;
@@ -30,6 +32,11 @@ public class Estadisticas : MonoBehaviour
 #else
         foreach (var obj in Botones)
             obj.SetActive(false);
+
+        foreach (var variable in botones)
+        {
+            Destroy(variable);
+        }
 #endif
 
         if (UnSoloJugador && GameplaySettingsManager.Instance.IsMultiplayer ||

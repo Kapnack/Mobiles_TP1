@@ -30310,6 +30310,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7272f53a2d4f7174a8c5cb502d24bb0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &88059147 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3691385563779081411, guid: 52b80d304f3535a4c8f75a6924c043ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 1889455960}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &137767936 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8762679067823302951, guid: 52b80d304f3535a4c8f75a6924c043ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 1889455960}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &149719244 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5211226084781381217, guid: 8c6f7792cef82744db0781f457f2619a,
@@ -30424,6 +30436,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215083192}
   m_CullTransparentMesh: 1
+--- !u!1 &250758248 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6731456611482167423, guid: 52b80d304f3535a4c8f75a6924c043ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 1889455960}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &303678671 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7474722008961451802, guid: 52b80d304f3535a4c8f75a6924c043ea,
@@ -30497,6 +30515,12 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
   m_RespectSceneVisibilityWhenBakingGI: 0
+--- !u!1 &562712878 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7620497261991880227, guid: 52b80d304f3535a4c8f75a6924c043ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 1889455960}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &629314373
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30612,6 +30636,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b81b1a58a0f14c9439cbdd014e695f71, type: 3}
+--- !u!1 &873687628 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2748407261942605867, guid: 52b80d304f3535a4c8f75a6924c043ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 1889455960}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &907839346
 GameObject:
   m_ObjectHideFlags: 0
@@ -31150,6 +31180,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1649945256}
   m_CullTransparentMesh: 1
+--- !u!1 &1854473942 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7874642106865691016, guid: 52b80d304f3535a4c8f75a6924c043ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 1889455960}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1860892457
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31634,6 +31670,21 @@ PrefabInstance:
       propertyPath: Camion
       value: 
       objectReference: {fileID: 27660010}
+    - target: {fileID: 776031384350764269, guid: 52b80d304f3535a4c8f75a6924c043ea,
+        type: 3}
+      propertyPath: botones.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 776031384350764269, guid: 52b80d304f3535a4c8f75a6924c043ea,
+        type: 3}
+      propertyPath: 'botones.Array.data[0]'
+      value: 
+      objectReference: {fileID: 873687628}
+    - target: {fileID: 776031384350764269, guid: 52b80d304f3535a4c8f75a6924c043ea,
+        type: 3}
+      propertyPath: 'botones.Array.data[1]'
+      value: 
+      objectReference: {fileID: 250758248}
     - target: {fileID: 809634332063217709, guid: 52b80d304f3535a4c8f75a6924c043ea,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -31704,11 +31755,41 @@ PrefabInstance:
       propertyPath: Camion
       value: 
       objectReference: {fileID: 13058}
+    - target: {fileID: 6468909254848055413, guid: 52b80d304f3535a4c8f75a6924c043ea,
+        type: 3}
+      propertyPath: botones.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6468909254848055413, guid: 52b80d304f3535a4c8f75a6924c043ea,
+        type: 3}
+      propertyPath: 'botones.Array.data[0]'
+      value: 
+      objectReference: {fileID: 137767936}
+    - target: {fileID: 6468909254848055413, guid: 52b80d304f3535a4c8f75a6924c043ea,
+        type: 3}
+      propertyPath: 'botones.Array.data[1]'
+      value: 
+      objectReference: {fileID: 88059147}
     - target: {fileID: 7119982364608142336, guid: 52b80d304f3535a4c8f75a6924c043ea,
         type: 3}
       propertyPath: Camion
       value: 
       objectReference: {fileID: 13058}
+    - target: {fileID: 7119982364608142336, guid: 52b80d304f3535a4c8f75a6924c043ea,
+        type: 3}
+      propertyPath: botones.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7119982364608142336, guid: 52b80d304f3535a4c8f75a6924c043ea,
+        type: 3}
+      propertyPath: 'botones.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1854473942}
+    - target: {fileID: 7119982364608142336, guid: 52b80d304f3535a4c8f75a6924c043ea,
+        type: 3}
+      propertyPath: 'botones.Array.data[1]'
+      value: 
+      objectReference: {fileID: 562712878}
     - target: {fileID: 8456882225041519902, guid: 52b80d304f3535a4c8f75a6924c043ea,
         type: 3}
       propertyPath: m_IsActive
