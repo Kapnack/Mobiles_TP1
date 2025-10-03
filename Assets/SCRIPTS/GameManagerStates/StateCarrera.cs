@@ -1,4 +1,5 @@
-﻿using GameManagerStates;
+﻿using System.Collections;
+using GameManagerStates;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
@@ -7,6 +8,7 @@ namespace entityStates
 {
     public class StateCarrera : AbstractState<GameManager>
     {
+        
         public override void Update()
         {
             if (Input.GetKey(KeyCode.Mouse1) &&
@@ -37,7 +39,7 @@ namespace entityStates
         {
             this.entity = entity;
 
-            entity.calibracionHUDs.gameObject.SetActive(false);
+            entity.DisableHUDCalib();
             
             var handle = Addressables.InstantiateAsync(entity.Pista);
 

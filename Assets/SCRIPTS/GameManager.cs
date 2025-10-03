@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using entityStates;
 using GameManagerStates;
@@ -67,10 +68,10 @@ public class GameManager : Singleton<GameManager>
             Player2.gameObject.SetActive(false);
         else
             Player2.gameObject.SetActive(true);
-        
+
         cerrarJuego.action.Enable();
     }
-    
+
     private void OnDisable()
     {
         if (cerrarJuego != null)
@@ -142,6 +143,18 @@ public class GameManager : Singleton<GameManager>
         }
         else if (PlayerInfo1.PJ != null)
             state.Finalizar();
+    }
+
+    public void DisableHUDCalib()
+    {
+        StartCoroutine(DisableHUDCalibracion());
+    }
+
+    private IEnumerator DisableHUDCalibracion()
+    {
+        yield return new WaitForEndOfFrame();
+
+        calibracionHUDs.gameObject.SetActive(false);
     }
 
     [Serializable]
