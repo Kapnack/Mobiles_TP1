@@ -30964,10 +30964,35 @@ PrefabInstance:
       propertyPath: Pj
       value: 
       objectReference: {fileID: 27660010}
+    - target: {fileID: 1660876530248068856, guid: 8c6f7792cef82744db0781f457f2619a,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1660876530248068856, guid: 8c6f7792cef82744db0781f457f2619a,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1660876530248068856, guid: 8c6f7792cef82744db0781f457f2619a,
+        type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2337044270791516097, guid: 8c6f7792cef82744db0781f457f2619a,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2536411153904854398, guid: 8c6f7792cef82744db0781f457f2619a,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2536411153904854398, guid: 8c6f7792cef82744db0781f457f2619a,
+        type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2643950748383837723, guid: 8c6f7792cef82744db0781f457f2619a,
         type: 3}
@@ -30983,6 +31008,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -135
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873013680853439377, guid: 8c6f7792cef82744db0781f457f2619a,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873013680853439377, guid: 8c6f7792cef82744db0781f457f2619a,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873013680853439377, guid: 8c6f7792cef82744db0781f457f2619a,
+        type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4875168640436536922, guid: 8c6f7792cef82744db0781f457f2619a,
         type: 3}
