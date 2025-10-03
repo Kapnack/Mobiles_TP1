@@ -27135,9 +27135,13 @@ MonoBehaviour:
   ObstaculosGO: {fileID: 0}
   PistaGO: {fileID: 0}
   PlayerInfo1:
+    FinTuto1: 0
+    FinTuto2: 0
     LadoAct: 0
     PJ: {fileID: 0}
   PlayerInfo2:
+    FinTuto1: 0
+    FinTuto2: 0
     LadoAct: 0
     PJ: {fileID: 0}
   Player1: {fileID: 13058}
@@ -31960,7 +31964,7 @@ PrefabInstance:
     - target: {fileID: 3352562370476914001, guid: 8c6f7792cef82744db0781f457f2619a,
         type: 3}
       propertyPath: m_ControlPath
-      value: <Keyboard>/w
+      value: <Keyboard>/s
       objectReference: {fileID: 0}
     - target: {fileID: 3823596217935135872, guid: 8c6f7792cef82744db0781f457f2619a,
         type: 3}
@@ -31970,7 +31974,7 @@ PrefabInstance:
     - target: {fileID: 5483411584691355909, guid: 8c6f7792cef82744db0781f457f2619a,
         type: 3}
       propertyPath: m_ControlPath
-      value: <Keyboard>/w
+      value: <Keyboard>/s
       objectReference: {fileID: 0}
     - target: {fileID: 6878317120863761492, guid: 8c6f7792cef82744db0781f457f2619a,
         type: 3}
@@ -31980,7 +31984,7 @@ PrefabInstance:
     - target: {fileID: 7616258729196239158, guid: 8c6f7792cef82744db0781f457f2619a,
         type: 3}
       propertyPath: m_ControlPath
-      value: <Keyboard>/upArrow
+      value: <Keyboard>/downArrow
       objectReference: {fileID: 0}
     - target: {fileID: 7643776850776794174, guid: 8c6f7792cef82744db0781f457f2619a,
         type: 3}

@@ -43,11 +43,8 @@ namespace GameManagerStates
                 _confirmar2 = map2.FindAction("Confirmar");
                 map2.Enable();
             }
-        }
-
-        public override void Update()
-        {
-            if (!entity.PlayerInfo1.PJ && _confirmar1.WasPressedThisFrame())
+            
+            if (!entity.PlayerInfo1.PJ)
             {
                 entity.PlayerInfo1 = new GameManager.PlayerInfo(0, entity.Player1);
                 entity.PlayerInfo1.LadoAct = Visualizacion.Lado.Izq;
@@ -57,14 +54,17 @@ namespace GameManagerStates
             // Jugador 2 confirma
             if (GameplaySettingsManager.Instance.IsMultiplayer)
             {
-                if (!entity.PlayerInfo2.PJ && _confirmar2.WasPressedThisFrame())
+                if (!entity.PlayerInfo2.PJ)
                 {
                     entity.PlayerInfo2 = new GameManager.PlayerInfo(1, entity.Player2);
                     entity.PlayerInfo2.LadoAct = Visualizacion.Lado.Der;
                     entity.SetPosicion(entity.PlayerInfo2);
                 }
             }
+        }
 
+        public override void Update()
+        {
             // Chequear finalización
             if (GameplaySettingsManager.Instance.IsMultiplayer)
             {

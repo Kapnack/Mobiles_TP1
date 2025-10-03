@@ -15,7 +15,7 @@ public class PalletMover : ManejoPallets
     }
 
     public ManejoPallets Desde, Hasta;
-    bool segundoCompleto = false;
+    private int estadoBolsa = 0;
 
     [SerializeField] private InputActionAsset _inputSystem;
     private InputActionMap _inputField;
@@ -54,37 +54,37 @@ public class PalletMover : ManejoPallets
         }
         else if (Mathf.Approximately(context.ReadValue<float>(), 1))
         {
-            SegundoPaso();
+            TercerPaso();
         }
     }
 
-    private void AbajoManager(InputAction.CallbackContext _) => TercerPaso();
+    private void AbajoManager(InputAction.CallbackContext _) => SegundoPaso();
 
     private void PrimerPaso()
     {
-        if (Tenencia() || !Desde.Tenencia())
+        if (Tenencia() || !Desde.Tenencia() || estadoBolsa != 0)
             return;
 
         Desde.Dar(this);
-        segundoCompleto = false;
+        estadoBolsa = 1;
     }
 
     private void SegundoPaso()
     {
-        if (!Tenencia())
+        if (!Tenencia() || estadoBolsa != 1)
             return;
 
         Pallets[0].script.transform.position = transform.position;
-        segundoCompleto = true;
+        estadoBolsa = 2;
     }
 
     void TercerPaso()
     {
-        if (!segundoCompleto || !Tenencia())
+        if (estadoBolsa != 2 || !Tenencia())
             return;
 
         Dar(Hasta);
-        segundoCompleto = false;
+        estadoBolsa = 0;
     }
 
     public override void Dar(ManejoPallets receptor)
