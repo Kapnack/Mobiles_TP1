@@ -6,6 +6,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private Canvas MenuPrincipal;
     [SerializeField] private Canvas Creditos;
     [SerializeField] private GameObject SplashScreen;
+    [SerializeField] private GameObject GameplaySettings;
 
     private void Awake()
     {
@@ -20,7 +21,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void PlayGameScene()
     {
-        GameplaySettingsManager.Instance.ActivarCanvas();
+        GameplaySettings.SetActive(true);
         MenuPrincipal.gameObject.SetActive(false);
     }
 
@@ -28,6 +29,7 @@ public class MainMenuManager : MonoBehaviour
     {
         MenuPrincipal.gameObject.SetActive(true);
         Creditos.gameObject.SetActive(false);
+        GameplaySettings.gameObject.SetActive(false);
     }
 
     public void AbrirCreditos()
