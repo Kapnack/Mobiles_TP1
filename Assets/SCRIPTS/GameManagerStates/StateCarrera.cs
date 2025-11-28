@@ -2,6 +2,7 @@
 using GameManagerStates;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
 
 namespace entityStates
@@ -11,12 +12,6 @@ namespace entityStates
         
         public override void Update()
         {
-            if (Input.GetKey(KeyCode.Mouse1) &&
-                Input.GetKey(KeyCode.Keypad0))
-            {
-                entity.TiempoDeJuego = 0;
-            }
-
             if (entity.TiempoDeJuego <= 0)
             {
                 Finalizar();
@@ -41,7 +36,7 @@ namespace entityStates
 
             entity.DisableHUDCalib();
             
-            var handle = Addressables.InstantiateAsync(entity.Pista);
+            AsyncOperationHandle<GameObject> handle = Addressables.InstantiateAsync(entity.Pista);
 
             entity.PistaGO = await handle.Task;
             entity.PistaGO.transform.position = new Vector3(-17.88721f, -30.0f, 5202.328f);

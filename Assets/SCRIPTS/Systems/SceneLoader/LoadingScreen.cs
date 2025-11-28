@@ -35,13 +35,15 @@ namespace Systems.SceneLoader
         {
             while (_isLoading)
             {
-                var progress = _data.GetCurrentLoadingProgress() != 0 ? _data.GetCurrentLoadingProgress() * 100.0f : 0;
+                float progress = _data.GetCurrentLoadingProgress() != 0
+                    ? _data.GetCurrentLoadingProgress() * 100.0f
+                    : 0;
 
                 slider.value = progress;
 
                 yield return null;
             }
-            
+
             yield return new WaitForSeconds(2f);
             canvas?.gameObject.SetActive(false);
         }

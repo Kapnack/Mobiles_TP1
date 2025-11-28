@@ -184,7 +184,7 @@ RectTransform:
   m_Father: {fileID: 2459424893593844426}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -244,7 +244,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &48255862255786956
 RectTransform:
   m_ObjectHideFlags: 0
@@ -426,9 +426,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8282979981052302533}
-  - component: {fileID: 7815619033117374824}
-  - component: {fileID: 6417414952600677079}
   - component: {fileID: 6621528351853540249}
+  - component: {fileID: 7609895437783610452}
+  - component: {fileID: 895347523963121261}
   m_Layer: 0
   m_Name: LoadingScreen
   m_TagString: Untagged
@@ -452,7 +452,21 @@ Transform:
   - {fileID: 48255862255786956}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7815619033117374824
+--- !u!114 &6621528351853540249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6860550077628539880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a54f4769c2f4b469b3a403079af5ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 4384505476223917489}
+  slider: {fileID: 1869304839390599605}
+--- !u!114 &7609895437783610452
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -468,7 +482,7 @@ MonoBehaviour:
     sceneAsset: {fileID: 102900000, guid: 302a90a714077cc4fa08626b0afda4ad, type: 3}
     <Index>k__BackingField: 0
     <Name>k__BackingField: Persistant
---- !u!114 &6417414952600677079
+--- !u!114 &895347523963121261
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -492,20 +506,6 @@ MonoBehaviour:
     sceneAsset: {fileID: 102900000, guid: 3fed48a553168ae458bbf014c512a5cd, type: 3}
     <Index>k__BackingField: 3
     <Name>k__BackingField: PtsFinal
---- !u!114 &6621528351853540249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6860550077628539880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22a54f4769c2f4b469b3a403079af5ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvas: {fileID: 4384505476223917489}
-  slider: {fileID: 1869304839390599605}
 --- !u!1 &8260442339893216020
 GameObject:
   m_ObjectHideFlags: 0

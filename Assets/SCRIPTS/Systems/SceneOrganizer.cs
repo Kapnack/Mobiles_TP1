@@ -24,7 +24,10 @@ namespace Systems
             _loadingScreen = GetComponent<LoadingScreen>();
                 
             _sceneLoader = GetComponent<ISceneLoader>();
+        }
 
+        private void Start()
+        {
             LoadMainMenuScene();
         }
 
