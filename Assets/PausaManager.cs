@@ -1,0 +1,52 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+public class PausaManager : MonoBehaviour
+{
+    [SerializeField] private RectTransform rectTransform;
+    [SerializeField] private Button button;
+    [SerializeField] private GameObject panel;
+
+    private bool _pausado = false;
+
+    private void Awake()
+    {
+        rectTransform = GetComponent<RectTransform>();
+        button = GetComponent<Button>();
+
+        button?.onClick.AddListener(ManejarPause);
+    }
+
+    private void Start()
+    {
+        ActualizarPosicion();
+        panel.SetActive(false);
+    }
+
+    private void ActualizarPosicion()
+    {
+        if (GameplaySettingsManager.Instance.IsMultiplayer)
+        {
+            rectTransform.anchorMin = new Vector2(0.5f, 1f);
+            rectTransform.anchorMax = new Vector2(0.5f, 1f);
+            rectTransform.pivot = new Vector2(0.5f, 1f);
+
+            rectTransform.anchoredPosition = new Vector2(0f, -20f);
+        }
+        else
+        {
+            rectTransform.anchorMin = new Vector2(1f, 1f);
+            rectTransform.anchorMax = new Vector2(1f, 1f);
+            rectTransform.pivot = new Vector2(1f, 1f);
+
+            rectTransform.anchoredPosition = new Vector2(-20f, -20f);
+        }
+    }
+
+    private void ManejarPause()
+    {
+        _pausado = !_pausado;
+        panel.SetActive(_pausado);
+        Time.timeScale = _pausado ? 0f : 1f;
+    }
+}
