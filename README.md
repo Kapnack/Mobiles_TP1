@@ -9,5 +9,6 @@ Se nos dio como tarea portear a dispositivos mobiles un juego realizado por el p
 Adressables, carga y descarga asyncronica de escenas, Pantalla Tactil, Operadores de Preprocesamiento, Singleton entre otras herramientas y patrones de diseño.
 
 Imagenes:
+
 ![BrinksICO](https://github.com/user-attachments/assets/10a204b6-7315-45f1-9ebd-502398237296)
 <img width="946" height="533" alt="image" src="https://github.com/user-attachments/assets/8602b18f-9cbd-465b-a52a-3c267fd4991c" />
