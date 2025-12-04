@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Fabrica
 {
@@ -15,13 +16,13 @@ namespace Fabrica
         {
             dificultad = GameplaySettingsManager.Instance.DificultadOpcionActual;
 
-            var operacion = Addressables.LoadAssetAsync<GameObject>(taxiAsset);
+            AsyncOperationHandle<GameObject> operacion = Addressables.LoadAssetAsync<GameObject>(taxiAsset);
 
             taxiCargado = await operacion.Task;
 
             factory = new FabricaDeTaxis(taxiCargado);
 
-            foreach (var item in posicionDeFabrica)
+            foreach (GameObject item in posicionDeFabrica)
             {
                 factory.CrearAuto(
                     transform,

@@ -15,12 +15,14 @@ namespace Fabrica
 
         public override void CrearAuto(Transform parent, Vector3 position, Quaternion rotation, int dificultad)
         {
+            GameObject GO = Object.Instantiate(taxiAsset, position, rotation, parent);
 
-            var GO = Object.Instantiate(taxiAsset, position, rotation, parent);
-
-            var taxiComp = GO.GetComponent<TaxiComp>();
+            TaxiComp taxiComp = GO.GetComponent<TaxiComp>();
             if (taxiComp != null)
-                taxiComp.Vel *= dificultad + 1;
+            {
+                taxiComp.Vel = 10;
+                taxiComp.Vel *= dificultad + 1.5f;
+            }
         }
     }
 }
