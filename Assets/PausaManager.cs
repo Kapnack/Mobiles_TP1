@@ -13,7 +13,7 @@ public class PausaManager : MonoBehaviour
 
     [Header("Botones Menu Pausa")] [SerializeField]
     private Button menuPrincipal;
-
+    [SerializeField] private Button pausaBotonEnMenu;
     [SerializeField] private Button resetear;
 
     private bool _pausado = false;
@@ -21,6 +21,7 @@ public class PausaManager : MonoBehaviour
     private void Awake()
     {
         button.onClick.AddListener(ManejarPause);
+        pausaBotonEnMenu.onClick.AddListener(ManejarPause);
         menuPrincipal.onClick.AddListener(OnMenuPrincipal);
         resetear.onClick.AddListener(OnResetear);
     }
@@ -39,7 +40,7 @@ public class PausaManager : MonoBehaviour
             rectTransform.anchorMax = new Vector2(0.5f, 1f);
             rectTransform.pivot = new Vector2(0.5f, 1f);
 
-            rectTransform.anchoredPosition = new Vector2(0f, -20f);
+            rectTransform.anchoredPosition = new Vector2(0f, -80f);
         }
         else
         {
@@ -54,6 +55,7 @@ public class PausaManager : MonoBehaviour
     private void ManejarPause()
     {
         _pausado = !_pausado;
+        button.gameObject.SetActive(!_pausado);
         panel.SetActive(_pausado);
         Time.timeScale = _pausado ? 0f : 1f;
     }
