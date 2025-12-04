@@ -47,7 +47,7 @@ namespace Systems.SceneLoader
 
         private async Task StartLoading(SceneRef sceneRef, LoadSceneMode mode)
         {
-            var loadingInfo = new SceneLoadingInfo();
+            SceneLoadingInfo loadingInfo = new();
 
             try
             {
@@ -58,7 +58,7 @@ namespace Systems.SceneLoader
 
                 await loadingInfo.Operation;
 
-                var loadedScene = SceneManager.GetSceneByBuildIndex(sceneRef.Index);
+                Scene loadedScene = SceneManager.GetSceneByBuildIndex(sceneRef.Index);
 
                 if (loadedScene.IsValid() && loadedScene.isLoaded)
                     _activeScenes.Add(loadedScene);
@@ -76,9 +76,9 @@ namespace Systems.SceneLoader
 
         private Task StartUnloading(Scene scene)
         {
-            var tcs = new TaskCompletionSource<bool>();
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
 
-            var op = SceneManager.UnloadSceneAsync(scene);
+            AsyncOperation op = SceneManager.UnloadSceneAsync(scene);
             if (op == null)
             {
                 tcs.SetResult(true);
@@ -92,33 +92,34 @@ namespace Systems.SceneLoader
         }
 
         /// <inheritdoc/>
-        public async Task LoadSceneAsync(SceneRef sceneRef, LoadSceneMode mode = LoadSceneMode.Additive)
+        public Task LoadSceneAsync(SceneRef sceneRef, LoadSceneMode mode = LoadSceneMode.Additive)
         {
             if (sceneRef == null)
             {
                 Debug.LogWarning("No SceneRef assigned");
-                return;
+                return Task.CompletedTask;
             }
 
             if (sceneRef.Index < 0)
             {
                 Debug.LogWarning($"Not Valid SceneRef. Cause SceneIndex: {sceneRef.Name} is < 0");
-                return;
+                return Task.CompletedTask;
             }
 
             if (IsSceneLoaded(sceneRef))
             {
                 Debug.LogWarning($"Scene: {sceneRef.Name} is already loaded.");
-                return;
+                return Task.CompletedTask;
             }
 
             if (IsSceneLoading(sceneRef))
             {
                 Debug.LogWarning($"Scene: {sceneRef.Name} is already loading.");
-                return;
+                return Task.CompletedTask;
             }
 
             StartLoading(sceneRef, mode);
+            return Task.CompletedTask;
         }
 
         /// <inheritdoc/>
@@ -126,7 +127,7 @@ namespace Systems.SceneLoader
         {
             List<Task> activeScenesTask = new();
 
-            foreach (var t in sceneRef)
+            foreach (SceneRef t in sceneRef)
                 activeScenesTask.Add(LoadSceneAsync(t));
 
             await Task.WhenAll(activeScenesTask);
@@ -136,7 +137,7 @@ namespace Systems.SceneLoader
 
         public float GetCurrentLoadingProgress()
         {
-            var progress = _loadingScenes.Sum(t => t.Operation.progress);
+            float progress = _loadingScenes.Sum(t => t.Operation.progress);
 
             return _loadingScenes.Count > 0 ? progress / _loadingScenes.Count : -1f;
         }
@@ -158,7 +159,7 @@ namespace Systems.SceneLoader
         
         private Task UnloadSceneTask(Scene scene)
         {
-            var tcs = new TaskCompletionSource<bool>();
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
 
             AsyncOperation op = SceneManager.UnloadSceneAsync(scene);
             if (op == null)
@@ -188,7 +189,7 @@ namespace Systems.SceneLoader
 
         public async Task UnloadAll(SceneRef[] exeptions)
         {
-            for (var i = _activeScenes.Count - 1; i >= 0; i--)
+            for (int i = _activeScenes.Count - 1; i >= 0; i--)
             {
                 if (IsSceneInExceptionArray(_activeScenes[i].buildIndex, exeptions))
                     continue;

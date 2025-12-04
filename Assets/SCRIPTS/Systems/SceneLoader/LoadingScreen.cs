@@ -34,24 +34,39 @@ namespace Systems.SceneLoader
 
         private IEnumerator UpdateLoading()
         {
+            float timer = 0f;
+
             while (_isLoading)
             {
+                if (!_isLoading)
+                {
+                    canvas?.gameObject.SetActive(false);
+                    yield break;
+                }
+
                 float progress = _data.GetCurrentLoadingProgress() != 0
                     ? _data.GetCurrentLoadingProgress() * 100.0f
                     : 0;
 
                 slider.value = progress;
 
+                timer += Time.deltaTime;
+
+                if (timer >= 2f && (progress <= 0f || progress >= 100f))
+                {
+                    canvas?.gameObject.SetActive(false);
+                    _isLoading = false;
+                    yield break;
+                }
+
                 yield return null;
             }
-
-            yield return new WaitForSeconds(2f);
-            canvas?.gameObject.SetActive(false);
         }
 
         public void EndLoadingScreen()
         {
             _isLoading = false;
+            canvas?.gameObject.SetActive(false);
         }
     }
 }

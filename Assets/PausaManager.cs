@@ -1,20 +1,28 @@
+using Systems;
+using Systems.SceneLoader;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PausaManager : MonoBehaviour
 {
-    [SerializeField] private RectTransform rectTransform;
+    [Header("Boton de Pausa")] [SerializeField]
+    private RectTransform rectTransform;
+
     [SerializeField] private Button button;
     [SerializeField] private GameObject panel;
+
+    [Header("Botones Menu Pausa")] [SerializeField]
+    private Button menuPrincipal;
+
+    [SerializeField] private Button resetear;
 
     private bool _pausado = false;
 
     private void Awake()
     {
-        rectTransform = GetComponent<RectTransform>();
-        button = GetComponent<Button>();
-
-        button?.onClick.AddListener(ManejarPause);
+        button.onClick.AddListener(ManejarPause);
+        menuPrincipal.onClick.AddListener(OnMenuPrincipal);
+        resetear.onClick.AddListener(OnResetear);
     }
 
     private void Start()
@@ -48,5 +56,17 @@ public class PausaManager : MonoBehaviour
         _pausado = !_pausado;
         panel.SetActive(_pausado);
         Time.timeScale = _pausado ? 0f : 1f;
+    }
+
+    private void OnMenuPrincipal()
+    {
+        ManejarPause();
+        SceneOrganizer.Instance?.LoadMainMenuScene();
+    }
+
+    private void OnResetear()
+    {
+        ManejarPause();
+        SceneOrganizer.Instance?.LoadGameplayScene();
     }
 }
