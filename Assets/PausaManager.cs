@@ -48,7 +48,7 @@ public class PausaManager : MonoBehaviour
             rectTransform.anchorMax = new Vector2(1f, 1f);
             rectTransform.pivot = new Vector2(1f, 1f);
 
-            rectTransform.anchoredPosition = new Vector2(-20f, -20f);
+            rectTransform.anchoredPosition = new Vector2(-80f, -20f);
         }
     }
 
