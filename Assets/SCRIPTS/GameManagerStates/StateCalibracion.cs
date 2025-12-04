@@ -33,13 +33,13 @@ namespace GameManagerStates
                 entity.Player2.CambiarACalibracion();
 
             // Buscar acciones en el InputActionAsset
-            var map1 = _inputSystem.FindActionMap("Jugador1", true);
+            InputActionMap map1 = _inputSystem.FindActionMap("Jugador1", true);
             _confirmar1 = map1.FindAction("Confirmar");
             map1.Enable();
 
             if (GameplaySettingsManager.Instance.IsMultiplayer)
             {
-                var map2 = _inputSystem.FindActionMap("Jugador2", true);
+                InputActionMap map2 = _inputSystem.FindActionMap("Jugador2", true);
                 _confirmar2 = map2.FindAction("Confirmar");
                 map2.Enable();
             }

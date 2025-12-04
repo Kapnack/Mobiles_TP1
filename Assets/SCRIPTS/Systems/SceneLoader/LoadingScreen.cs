@@ -21,6 +21,7 @@ namespace Systems.SceneLoader
             _data = GetComponent<ILoadingData>();
             slider.minValue = 0;
             slider.maxValue = 100;
+            canvas?.gameObject.SetActive(false);
         }
 
         public void StartLoadingScreen()

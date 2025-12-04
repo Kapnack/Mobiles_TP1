@@ -1,33 +1,65 @@
-﻿using System.Collections;
-using GameManagerStates;
+﻿using System.Globalization;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
 
-namespace entityStates
+namespace GameManagerStates
 {
     public class StateCarrera : AbstractState<GameManager>
     {
-        
+        private bool _isCountdownAllowed = true;
+        private float _startCountdown = 3;
+
         public override void Update()
         {
-            if (entity.TiempoDeJuego <= 0)
+            if (_isCountdownAllowed)
             {
-                Finalizar();
-            }
+                _startCountdown -= Time.deltaTime;
 
-            if (entity.ConteoRedresivo)
-            {
-                entity.ConteoParaInicion -= Time.deltaTime;
-                if (entity.ConteoParaInicion < 0)
+                entity.conteoInicialText.text =
+                    _startCountdown > 1 ? ((int)_startCountdown).ToString() : "GO!";
+
+                if (_startCountdown < 0)
                 {
-                    Empezar();
-                    entity.ConteoRedresivo = false;
+                    _isCountdownAllowed = false;
+                    entity.conteoInicialCanvas.gameObject.SetActive(false);
+                    Object.Destroy(entity.conteoInicialCanvas);
+                    
+                    entity.Player1.EmpezarCarrera();
+
+                    if (GameplaySettingsManager.Instance.IsMultiplayer)
+                        entity.Player2.EmpezarCarrera();
+                }
+                else
+                {
+                    entity.conteoInicialCanvas.SetActive(true);
+                    
+                    entity.Player1.EsperarCarrera();
+
+                    if (GameplaySettingsManager.Instance.IsMultiplayer)
+                        entity.Player2.EsperarCarrera();
                 }
             }
             else
-                entity.TiempoDeJuego -= Time.deltaTime;
+            {
+                if (entity.TiempoDeJuego <= 0)
+                {
+                    Finalizar();
+                }
+
+                if (entity.ConteoRedresivo)
+                {
+                    entity.ConteoParaInicion -= Time.deltaTime;
+                    if (entity.ConteoParaInicion < 0)
+                    {
+                        Empezar();
+                        entity.ConteoRedresivo = false;
+                    }
+                }
+                else
+                    entity.TiempoDeJuego -= Time.deltaTime;
+            }
         }
 
         public override async void Cambiar(GameManager entity)
@@ -35,11 +67,15 @@ namespace entityStates
             this.entity = entity;
 
             entity.DisableHUDCalib();
-            
+
             AsyncOperationHandle<GameObject> handle = Addressables.InstantiateAsync(entity.Pista);
 
             entity.PistaGO = await handle.Task;
             entity.PistaGO.transform.position = new Vector3(-17.88721f, -30.0f, 5202.328f);
+
+            entity.terrenoCallBack = entity.PistaGO.GetComponent<TerrenoCallBack>();
+
+            entity.terrenoCallBack.SetUp(() => Finalizar());
 
             handle = Addressables.InstantiateAsync(entity.Obstaculos);
 
@@ -90,10 +126,6 @@ namespace entityStates
 
         public override void Empezar()
         {
-            entity.Player1.EmpezarCarrera();
-
-            if (GameplaySettingsManager.Instance.IsMultiplayer)
-                entity.Player2.EmpezarCarrera();
         }
 
         public override void Finalizar()
@@ -135,13 +167,13 @@ namespace entityStates
             }
             else
             {
-                    //lado que gano
-                    if (entity.PlayerInfo1.LadoAct == Visualizacion.Lado.Der)
-                        DatosPartida.LadoGanadaor = DatosPartida.Lados.Der;
-                    else
-                        DatosPartida.LadoGanadaor = DatosPartida.Lados.Izq;
-                    
-                    DatosPartida.PtsGanador = entity.Player1.Dinero;
+                //lado que gano
+                if (entity.PlayerInfo1.LadoAct == Visualizacion.Lado.Der)
+                    DatosPartida.LadoGanadaor = DatosPartida.Lados.Der;
+                else
+                    DatosPartida.LadoGanadaor = DatosPartida.Lados.Izq;
+
+                DatosPartida.PtsGanador = entity.Player1.Dinero;
             }
 
             entity.state = entity.StateFinDelJuego;

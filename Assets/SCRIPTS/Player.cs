@@ -156,5 +156,14 @@ public class Player : MonoBehaviour
     {
         frenado.RestaurarVel();
         ControlDire.Habilitado = true;
+        rb.useGravity = true;
+        rb.isKinematic = false;
+    }
+
+    public void EsperarCarrera()
+    {
+        ControlDire.Habilitado = false;
+        rb.useGravity = false;
+        rb.isKinematic = true;
     }
 }

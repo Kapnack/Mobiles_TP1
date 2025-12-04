@@ -1,15 +1,17 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using entityStates;
 using GameManagerStates;
 using Systems;
+using TMPro;
 using UnityEngine.AddressableAssets;
 using UnityEngine.InputSystem;
 
 public class GameManager : Singleton<GameManager>
 {
     public GameObject calibracionHUDs;
+    public GameObject conteoInicialCanvas;
+    public TMP_Text conteoInicialText;
     public AbstractState<GameManager> state;
 
     private StateCalibracion stateCalibracion = new();
@@ -23,7 +25,8 @@ public class GameManager : Singleton<GameManager>
     public GameObject CanvasJuegoGO;
     [HideInInspector] public GameObject ObstaculosGO;
     [HideInInspector] public GameObject PistaGO;
-
+    [HideInInspector] public TerrenoCallBack terrenoCallBack;
+    
     public PlayerInfo PlayerInfo1 = null;
     public PlayerInfo PlayerInfo2 = null;
 
@@ -56,6 +59,8 @@ public class GameManager : Singleton<GameManager>
     {
         base.Awake();
 
+        conteoInicialCanvas.gameObject.SetActive(false);
+        
         if (actionAsset != null)
             stateCalibracion._inputSystem = actionAsset;
 
