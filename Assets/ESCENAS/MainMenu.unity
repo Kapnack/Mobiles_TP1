@@ -1003,8 +1003,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1249,7 +1249,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Emepezar
+  m_text: Empezar
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5468cd83fa0f6b24ba485b3318a55ed0, type: 2}
   m_sharedMaterial: {fileID: -6898593334169295839, guid: 5468cd83fa0f6b24ba485b3318a55ed0,
@@ -1277,8 +1277,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1365,7 +1365,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.38500002, y: 0.42833334}
   m_AnchorMax: {x: 0.61474997, y: 0.50333333}
-  m_AnchoredPosition: {x: 0, y: 0.4999962}
+  m_AnchoredPosition: {x: 0, y: 0.5}
   m_SizeDelta: {x: -84, y: -15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &270192772
@@ -2670,8 +2670,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3443,7 +3443,7 @@ GameObject:
   - component: {fileID: 1702673196}
   - component: {fileID: 1702673195}
   m_Layer: 5
-  m_Name: Emepezar
+  m_Name: Empezar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3872,8 +3872,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4234,7 +4234,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.6984377, y: 0.42833334}
   m_AnchorMax: {x: 0.92100006, y: 0.50333333}
-  m_AnchoredPosition: {x: -0.5, y: 0.4999962}
+  m_AnchoredPosition: {x: -0.5, y: 0.5}
   m_SizeDelta: {x: -79, y: -15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1857043302
@@ -4367,7 +4367,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.38500002, y: 0.12166667}
   m_AnchorMax: {x: 0.612875, y: 0.19833334}
-  m_AnchoredPosition: {x: 1, y: 1.0000305}
+  m_AnchoredPosition: {x: 1, y: 1.000061}
   m_SizeDelta: {x: -82, y: -16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1923830126
@@ -4616,7 +4616,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2070448704
 RectTransform:
   m_ObjectHideFlags: 0
