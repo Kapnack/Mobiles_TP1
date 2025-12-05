@@ -12,6 +12,7 @@ public class GameManager : Singleton<GameManager>
     public GameObject calibracionHUDs;
     public GameObject conteoInicialCanvas;
     public TMP_Text conteoInicialText;
+    public TMP_Text textoTiempoRestante;
     public AbstractState<GameManager> state;
 
     private StateCalibracion stateCalibracion = new();

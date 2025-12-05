@@ -58,12 +58,17 @@ namespace GameManagerStates
                     }
                 }
                 else
+                {
                     entity.TiempoDeJuego -= Time.deltaTime;
+                    entity.textoTiempoRestante.text = entity.TiempoDeJuego > 0 ? ((int)entity.TiempoDeJuego).ToString() : "Tiempo!";
+                }
             }
         }
 
         public override async void Cambiar(GameManager entity)
         {
+            entity.textoTiempoRestante.text = ((int)entity.TiempoDeJuego).ToString();
+            
             this.entity = entity;
 
             entity.DisableHUDCalib();
